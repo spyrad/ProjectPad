@@ -1,0 +1,22 @@
+name: Hello World Test
+
+# Dieser Workflow läuft bei jedem Push auf main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: |
+          echo "🎉 Hello from GitHub Actions!"
+          echo "Repo: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit: ${{ github.sha }}"
