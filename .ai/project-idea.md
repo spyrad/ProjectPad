@@ -23,11 +23,12 @@ Ein Projekt-Journaling-Tool, das die Einfachheit von Notepad mit intelligenter P
 - [x] Authentifizierung (Email/Password via Supabase)
 - [x] Projekte CRUD (Name, Beschreibung, Status, Ziele, Deadline)
 - [x] Personen CRUD (Name, Rolle, Beschreibung, Expertise, Kontakt)
-- [ ] Personen zu Projekten zuordnen (N:M)
-- [ ] Notizen CRUD mit optionaler Projekt- & Personen-Zuordnung
-- [ ] Timeline-Ansicht pro Projekt
+- [x] Personen zu Projekten zuordnen (N:M)
+- [x] Notizen CRUD mit optionaler Projekt- & Personen-Zuordnung
+- [x] Timeline-Ansicht pro Projekt
 - [x] Kontakte-Bereich (eigener Menüpunkt)
-- [ ] Alle Notizen zu einer Person (projektübergreifend)
+- [x] Alle Notizen zu einer Person (projektübergreifend)
+- [x] **CI/CD Pipeline mit GitHub Actions** (2026-01-03)
 
 ### Should Have (MVP - wenn Zeit bleibt)
 - [ ] AI: Projekt-Zusammenfassung (On-Demand)
@@ -80,4 +81,4 @@ Ein Projekt-Journaling-Tool, das die Einfachheit von Notepad mit intelligenter P
 
 ---
 *Erstellt: 2025-12-14*
-*Aktualisiert: 2025-12-31 (Personen CRUD implementiert)*
+*Aktualisiert: 2026-01-03 (MVP 100% + CI/CD Setup)*
