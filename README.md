@@ -4,20 +4,24 @@ Persönlicher Projekt-Assistent mit Notepad-Feeling
 
 ## Aktueller Status
 
-✅ **Bootstrap abgeschlossen** (2025-12-27)
+🎉 **MVP zu 100% fertig!** (2026-01-02)
 
-- Vite + React + TypeScript Setup
-- Tailwind CSS + shadcn/ui konfiguriert
-- Projekt-Struktur erstellt
-- React Router v6 Setup
-- Basis-Dateien vorhanden
+- ✅ Complete authentication flow (Login/Signup/Logout)
+- ✅ Projects CRUD mit Soft Delete
+- ✅ Persons CRUD mit Soft Delete
+- ✅ Notes CRUD mit Notepad-Feeling (Ctrl+Enter)
+- ✅ Timeline-Ansicht mit Datums-Gruppierung
+- ✅ N:M Zuordnungen (Projekte ↔ Personen)
+- ✅ Notizen ↔ Personen Zuordnung
+- ✅ PersonDetailPage mit Tabs
+- ✅ Protected Routes & RLS Policies
+- ✅ **CI/CD Pipeline mit GitHub Actions** (2026-01-03)
 
-⏸️ **Noch offen**
+🚀 **Nächste Schritte**
 
-- Supabase Projekt Setup
-- DB Schema Migration
-- Auth Flow Implementation
-- CRUD Features
+- Testing (Vitest + Playwright)
+- Deployment (Cloudflare Pages)
+- UI-Polishing (Dashboard, Dark Mode)
 
 ## Tech Stack
 
@@ -95,6 +99,21 @@ src/
 - `npm run preview` - Preview Production Build
 - `npm run lint` - ESLint
 
+## CI/CD
+
+GitHub Actions Workflows:
+
+- **PR Checks** (`.github/workflows/pr-checks.yml`)
+  - Linting (ESLint)
+  - Build Check
+  - Läuft bei jedem Pull Request
+
+- **Hello World** (`.github/workflows/hello-world.yml`)
+  - Test-Workflow für Learning
+  - Läuft bei Push auf main
+
 ---
 
-*Erstellt mit Claude Code - 2025-12-27*
+*Erstellt mit Claude Code - 10xDevs Kurs - 2025-12-27*
+*MVP fertiggestellt - 2026-01-02*
+*CI/CD Setup - 2026-01-03*
