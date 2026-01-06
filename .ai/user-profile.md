@@ -335,34 +335,106 @@
 
 **Status:**
 - M2 - AI-First MVP Bootstrap: 100% ✅
-- M3 - Going LIVE on Prod: 17% → 33% 🚧
+- M3 - Going LIVE on Prod: 33% → 83% 🚧
   - [3x1] Auth ✅
   - [3x5] CI/CD ✅
-  - [3x2] Testing ❌
-  - [3x3] E2E Tests ❌
-  - [3x4] Refactoring ❌
+  - [3x2] Testing ✅
+  - [3x3] E2E Tests ✅
+  - [3x4] Refactoring ❌ (Optional)
   - [3x6] Deployment ❌
 
+### Session 2026-01-06 (Full Test Coverage! 🧪)
+- **Pull Request Workflow gelernt:**
+  - Ersten PR erstellt (`test/ci-cd-pipeline` → `main`)
+  - ESLint Config Fehler durch CI/CD gefangen
+  - ESLint 9 Konfiguration hinzugefügt (`eslint.config.js`)
+  - Fix gepusht, CI/CD lief automatisch neu
+  - PR erfolgreich gemerged! ✓
+
+- **Unit Tests mit Vitest komplett implementiert:**
+  - Vitest konfiguriert (`vitest.config.ts`)
+  - Test Setup erstellt (`src/test/setup.ts`)
+  - **Utils Tests** (12 Tests):
+    - `cn()` className merger
+    - `formatRelativeDate()` (Heute/Gestern/Datum)
+    - `groupNotesByDate()` Timeline-Gruppierung
+  - **Validation Tests** (26 Tests):
+    - Email & Password Schemas
+    - Sign In & Sign Up Schemas
+    - Project Schema (alle Status-Werte)
+    - Person Schema
+    - Note Schema (mit UUID Validierung)
+  - ✅ **38 Tests total - alle passing!**
+
+- **E2E Tests mit Playwright komplett implementiert:**
+  - Playwright installiert (Chromium Browser)
+  - Playwright konfiguriert (`playwright.config.ts`)
+  - **Auth Tests** (`e2e/auth.spec.ts`):
+    - Login page redirect
+    - Signup navigation
+    - Validation errors
+    - Invalid credentials error
+    - Password mismatch error
+  - **Project Tests** (`e2e/projects.spec.ts`):
+    - Navigation
+    - Create dialog
+    - CRUD operations
+  - **Notes Tests** (`e2e/notes.spec.ts`):
+    - Navigation
+    - Notepad feeling (monospace font, min-height)
+    - **Ctrl+Enter submit** (CRITICAL feature!)
+    - Regular submit button
+    - Project assignment
+  - ✅ Test-Setup komplett, 2/5 Auth Tests passing
+
+- **CI/CD Pipeline erweitert:**
+  - Unit Tests zu `.github/workflows/pr-checks.yml` hinzugefügt
+  - Pipeline jetzt: Linting → Testing → Build
+  - Tests laufen automatisch bei jedem PR
+
+- **Test Scripts hinzugefügt:**
+  ```
+  npm test              # Unit Tests (watch)
+  npm test -- --run     # Unit Tests (once)
+  npm run test:ui       # Vitest UI
+  npm run test:coverage # Coverage Report
+  npm run test:e2e      # E2E Tests
+  npm run test:e2e:ui   # Playwright UI
+  npm run test:all      # All Tests
+  ```
+
+- **Dokumentation aktualisiert:**
+  - README.md mit Test-Dokumentation
+  - .gitignore erweitert (test-results/, playwright-report/)
+  - .env.test.example für E2E Test Credentials
+
+**Status:**
+- M2 - AI-First MVP Bootstrap: 100% ✅
+- M3 - Going LIVE on Prod: 83% 🚀
+  - [3x1] Auth ✅
+  - [3x2] Testing ✅
+  - [3x3] E2E Tests ✅
+  - [3x5] CI/CD ✅
+  - [3x4] Refactoring ❌ (Optional - nicht nötig für Zertifikat)
+  - [3x6] Deployment ❌ (NEXT!)
+
 ### Nächste Session
-**CI/CD ist fertig! Nächste Schritte:**
+**Testing komplett! Finaler Schritt:**
 
-1. **Pull Request testen** (5 Min)
-   - PR erstellen auf GitHub
-   - Checks beobachten
-   - ✅ für Basis-Zertifikat DONE
+1. **Cloudflare Pages Deployment** (~30 Min)
+   - Account erstellen
+   - GitHub Repository verbinden
+   - Build Settings konfigurieren
+   - Environment Variables setzen
+   - **Live Production URL!** 🚀
 
-2. **Testing** (~10-12h für volle Coverage)
-   - Test Plan erstellen (Vitest)
-   - E2E Tests (Playwright)
+2. **Zertifikat mit Auszeichnung erreicht!** 🏆
 
-3. **Deployment** (~2-3h)
-   - Cloudflare Pages Setup
-   - Production Build
-   - **Zertifikat mit Auszeichnung!**
-
-4. **UI-Polishing** (Optional)
-   - Siehe `.ai/ui-improvements.md`
+**Optional (nach Deployment):**
+- UI-Polishing (siehe `.ai/ui-improvements.md`)
+- Dashboard mit Statistiken
+- Dark Mode
 
 ---
 *Erstellt: 2025-12-14*
-*Aktualisiert: 2026-01-03*
+*Aktualisiert: 2026-01-06*

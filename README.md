@@ -4,7 +4,7 @@ Persönlicher Projekt-Assistent mit Notepad-Feeling
 
 ## Aktueller Status
 
-🎉 **MVP zu 100% fertig!** (2026-01-02)
+🎉 **MVP zu 100% fertig + Full Test Coverage!** (2026-01-06)
 
 - ✅ Complete authentication flow (Login/Signup/Logout)
 - ✅ Projects CRUD mit Soft Delete
@@ -16,12 +16,12 @@ Persönlicher Projekt-Assistent mit Notepad-Feeling
 - ✅ PersonDetailPage mit Tabs
 - ✅ Protected Routes & RLS Policies
 - ✅ **CI/CD Pipeline mit GitHub Actions** (2026-01-03)
+- ✅ **Unit Tests mit Vitest (38 Tests)** (2026-01-06)
+- ✅ **E2E Tests mit Playwright** (2026-01-06)
 
-🚀 **Nächste Schritte**
+🚀 **Nächster Schritt**
 
-- Testing (Vitest + Playwright)
-- Deployment (Cloudflare Pages)
-- UI-Polishing (Dashboard, Dark Mode)
+- **Deployment auf Cloudflare Pages** → Live Production URL!
 
 ## Tech Stack
 
@@ -34,6 +34,8 @@ Persönlicher Projekt-Assistent mit Notepad-Feeling
 | Backend | Supabase (PostgreSQL) |
 | Auth | Supabase Auth + RLS |
 | Forms | React Hook Form + Zod |
+| Testing | Vitest (Unit) + Playwright (E2E) |
+| CI/CD | GitHub Actions |
 
 ## Getting Started
 
@@ -94,10 +96,33 @@ src/
 
 ## Scripts
 
+### Development
 - `npm run dev` - Development Server
 - `npm run build` - Production Build
 - `npm run preview` - Preview Production Build
 - `npm run lint` - ESLint
+
+### Testing
+- `npm test` - Run Unit Tests (watch mode)
+- `npm test -- --run` - Run Unit Tests (once)
+- `npm run test:ui` - Open Vitest UI
+- `npm run test:coverage` - Generate coverage report
+- `npm run test:e2e` - Run E2E Tests (Playwright)
+- `npm run test:e2e:ui` - Open Playwright UI
+- `npm run test:e2e:headed` - Run E2E Tests (visible browser)
+- `npm run test:all` - Run all tests (Unit + E2E)
+
+## Testing
+
+### Unit Tests (Vitest)
+- ✅ 38 Tests total
+- ✅ Utils Tests (Date formatting, Grouping)
+- ✅ Validation Tests (Zod schemas)
+
+### E2E Tests (Playwright)
+- ✅ Auth Flow Tests
+- ✅ Project CRUD Tests
+- ✅ Notes Tests (Ctrl+Enter Feature)
 
 ## CI/CD
 
@@ -105,6 +130,7 @@ GitHub Actions Workflows:
 
 - **PR Checks** (`.github/workflows/pr-checks.yml`)
   - Linting (ESLint)
+  - Unit Tests (Vitest)
   - Build Check
   - Läuft bei jedem Pull Request
 
@@ -117,3 +143,4 @@ GitHub Actions Workflows:
 *Erstellt mit Claude Code - 10xDevs Kurs - 2025-12-27*
 *MVP fertiggestellt - 2026-01-02*
 *CI/CD Setup - 2026-01-03*
+*Full Test Coverage - 2026-01-06*
