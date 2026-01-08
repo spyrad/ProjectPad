@@ -19,9 +19,9 @@ Persönlicher Projekt-Assistent mit Notepad-Feeling
 - ✅ **Unit Tests mit Vitest (38 Tests)** (2026-01-06)
 - ✅ **E2E Tests mit Playwright** (2026-01-06)
 
-🚀 **Nächster Schritt**
+🚀 **Ready for Deployment!**
 
-- **Deployment auf Cloudflare Pages** → Live Production URL!
+Siehe **[Deployment Guide](.ai/deployment-guide.md)** für detaillierte Anleitung.
 
 ## Tech Stack
 
@@ -77,13 +77,14 @@ src/
 └── types/           # TypeScript Types
 ```
 
-## Nächste Schritte
+## Local Development Setup
 
-1. Supabase Projekt anlegen
-2. DB Schema migrieren (aus `.ai/db-schema.sql`)
-3. Environment Variables setzen (`.env.local`)
-4. DB-Types generieren
-5. Auth Flow implementieren
+1. Clone Repository
+2. `npm install`
+3. Supabase Projekt anlegen
+4. DB Schema migrieren (aus `.ai/db-schema.sql`)
+5. Environment Variables setzen (`.env.local` - siehe `.env.local.example`)
+6. `npm run dev`
 
 ## Dokumentation
 
@@ -93,6 +94,7 @@ src/
 - **DB Schema**: `.ai/db-schema.sql`
 - **API Plan**: `.ai/api-plan.md`
 - **UI Plan**: `.ai/ui-plan.md`
+- **Deployment Guide**: `.ai/deployment-guide.md`
 
 ## Scripts
 
@@ -138,9 +140,23 @@ GitHub Actions Workflows:
   - Test-Workflow für Learning
   - Läuft bei Push auf main
 
+## Deployment
+
+**Cloudflare Pages** - Automatisches Deployment bei Git Push
+
+**Schnellstart:**
+1. Cloudflare Account erstellen
+2. GitHub Repository verbinden
+3. Build Settings: `npm run build` → `dist/`
+4. Environment Variables setzen (Supabase Keys)
+5. Deploy! 🚀
+
+**Detaillierte Anleitung:** [Deployment Guide](.ai/deployment-guide.md)
+
 ---
 
 *Erstellt mit Claude Code - 10xDevs Kurs - 2025-12-27*
 *MVP fertiggestellt - 2026-01-02*
 *CI/CD Setup - 2026-01-03*
 *Full Test Coverage - 2026-01-06*
+*Deployment Ready - 2026-01-08*
