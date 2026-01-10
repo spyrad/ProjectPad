@@ -1,0 +1,8 @@
+name = "projectpad"
+compatibility_date = "2026-01-10"
+
+[site]
+bucket = "./dist"
+
+[build]
+command = "npm run build"
