@@ -1,0 +1,9 @@
+# Set correct MIME types for JavaScript modules
+/assets/*.js
+  Content-Type: application/javascript; charset=utf-8
+
+/assets/*.css
+  Content-Type: text/css; charset=utf-8
+
+/*.js
+  Content-Type: application/javascript; charset=utf-8
