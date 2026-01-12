@@ -102,10 +102,12 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
       {/* Timeline with date groups */}
       {groupedNotes.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <FileText className="h-16 w-16 text-muted-foreground mb-4" />
+          <div className="rounded-full bg-slate-100 p-6 mb-4">
+            <FileText className="h-12 w-12 text-slate-600" />
+          </div>
           <h3 className="text-lg font-semibold mb-2">Noch keine Notizen</h3>
-          <p className="text-muted-foreground mb-4">
-            Erstelle deine erste Notiz für dieses Projekt
+          <p className="text-muted-foreground mb-6 max-w-md">
+            Starte mit deiner ersten Notiz und dokumentiere wichtige Gedanken zu diesem Projekt.
           </p>
           <Button onClick={() => setIsCreateDialogOpen(true)} className="flex items-center gap-2">
             <Plus className="h-4 w-4" />

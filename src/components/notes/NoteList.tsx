@@ -1,4 +1,5 @@
 import { NoteCard } from './NoteCard';
+import { FileText } from 'lucide-react';
 import type { Note } from '@/types/entities';
 
 interface NoteListProps {
@@ -10,12 +11,13 @@ interface NoteListProps {
 export function NoteList({ notes, onEdit, onDelete }: NoteListProps) {
   if (notes.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <p className="text-muted-foreground">
-          Noch keine Notizen vorhanden.
-        </p>
-        <p className="text-sm text-muted-foreground mt-2">
-          Erstelle deine erste Notiz, um loszulegen!
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="rounded-full bg-slate-100 p-6 mb-4">
+          <FileText className="h-12 w-12 text-slate-600" />
+        </div>
+        <h3 className="text-lg font-semibold mb-2">Noch keine Notizen</h3>
+        <p className="text-muted-foreground max-w-md">
+          Erfasse deine ersten Gedanken und Ideen. Drücke Ctrl+Enter zum schnellen Speichern.
         </p>
       </div>
     );
