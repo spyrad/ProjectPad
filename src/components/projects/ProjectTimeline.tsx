@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { NoteCard } from '@/components/notes/NoteCard';
@@ -29,8 +30,10 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
         project_id: projectId, // Pre-fill project ID
       });
       setIsCreateDialogOpen(false);
+      toast.success('Notiz erfolgreich erstellt');
     } catch (error) {
       console.error('Failed to create note:', error);
+      toast.error('Fehler beim Erstellen der Notiz');
     }
   };
 
@@ -43,8 +46,10 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
         ...data,
       });
       setEditingNote(null);
+      toast.success('Notiz erfolgreich aktualisiert');
     } catch (error) {
       console.error('Failed to update note:', error);
+      toast.error('Fehler beim Aktualisieren der Notiz');
     }
   };
 
@@ -55,8 +60,10 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
 
     try {
       await deleteMutation.mutateAsync(id);
+      toast.success('Notiz erfolgreich gelöscht');
     } catch (error) {
       console.error('Failed to delete note:', error);
+      toast.error('Fehler beim Löschen der Notiz');
     }
   };
 

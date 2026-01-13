@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -29,8 +30,10 @@ export default function ProjectDetailPage() {
     try {
       await updateMutation.mutateAsync({ id: project.id, ...data });
       setIsEditDialogOpen(false);
+      toast.success('Projekt erfolgreich aktualisiert');
     } catch (error) {
       console.error('Failed to update project:', error);
+      toast.error('Fehler beim Aktualisieren des Projekts');
     }
   };
 
@@ -43,9 +46,11 @@ export default function ProjectDetailPage() {
 
     try {
       await deleteMutation.mutateAsync(project.id);
+      toast.success('Projekt erfolgreich gelöscht');
       navigate('/app/projects');
     } catch (error) {
       console.error('Failed to delete project:', error);
+      toast.error('Fehler beim Löschen des Projekts');
     }
   };
 

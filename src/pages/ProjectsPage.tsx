@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ProjectList } from '@/components/projects/ProjectList';
@@ -21,8 +22,10 @@ export default function ProjectsPage() {
     try {
       await createMutation.mutateAsync(data);
       setIsCreateDialogOpen(false);
+      toast.success('Projekt erfolgreich erstellt');
     } catch (error) {
       console.error('Failed to create project:', error);
+      toast.error('Fehler beim Erstellen des Projekts');
     }
   };
 
@@ -32,8 +35,10 @@ export default function ProjectsPage() {
     try {
       await updateMutation.mutateAsync({ id: editingProject.id, ...data });
       setEditingProject(null);
+      toast.success('Projekt erfolgreich aktualisiert');
     } catch (error) {
       console.error('Failed to update project:', error);
+      toast.error('Fehler beim Aktualisieren des Projekts');
     }
   };
 
@@ -44,8 +49,10 @@ export default function ProjectsPage() {
 
     try {
       await deleteMutation.mutateAsync(id);
+      toast.success('Projekt erfolgreich gelöscht');
     } catch (error) {
       console.error('Failed to delete project:', error);
+      toast.error('Fehler beim Löschen des Projekts');
     }
   };
 

@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -28,9 +29,12 @@ export default function SignupPage() {
       setError(null);
       await signUp(data.email, data.password);
       setSuccess(true);
+      toast.success('Registrierung erfolgreich! Bitte überprüfe deine E-Mail.');
     } catch (err) {
       console.error('Signup error:', err);
-      setError('Registrierung fehlgeschlagen. Bitte versuche es erneut.');
+      const errorMessage = 'Registrierung fehlgeschlagen. Bitte versuche es erneut.';
+      setError(errorMessage);
+      toast.error(errorMessage);
     }
   };
 

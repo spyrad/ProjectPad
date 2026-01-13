@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -41,8 +42,10 @@ export default function PersonDetailPage() {
     try {
       await updateMutation.mutateAsync({ id: person.id, ...data });
       setIsEditDialogOpen(false);
+      toast.success('Kontakt erfolgreich aktualisiert');
     } catch (error) {
       console.error('Failed to update person:', error);
+      toast.error('Fehler beim Aktualisieren des Kontakts');
     }
   };
 
@@ -55,9 +58,11 @@ export default function PersonDetailPage() {
 
     try {
       await deleteMutation.mutateAsync(person.id);
+      toast.success('Kontakt erfolgreich gelöscht');
       navigate('/app/persons');
     } catch (error) {
       console.error('Failed to delete person:', error);
+      toast.error('Fehler beim Löschen des Kontakts');
     }
   };
 
@@ -68,8 +73,10 @@ export default function PersonDetailPage() {
         person_id: id!, // Pre-fill person ID
       });
       setIsCreateNoteOpen(false);
+      toast.success('Notiz erfolgreich erstellt');
     } catch (error) {
       console.error('Failed to create note:', error);
+      toast.error('Fehler beim Erstellen der Notiz');
     }
   };
 
@@ -82,8 +89,10 @@ export default function PersonDetailPage() {
         ...data,
       });
       setEditingNote(null);
+      toast.success('Notiz erfolgreich aktualisiert');
     } catch (error) {
       console.error('Failed to update note:', error);
+      toast.error('Fehler beim Aktualisieren der Notiz');
     }
   };
 
@@ -94,8 +103,10 @@ export default function PersonDetailPage() {
 
     try {
       await deleteNoteMutation.mutateAsync(noteId);
+      toast.success('Notiz erfolgreich gelöscht');
     } catch (error) {
       console.error('Failed to delete note:', error);
+      toast.error('Fehler beim Löschen der Notiz');
     }
   };
 

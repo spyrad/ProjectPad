@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { PersonList } from '@/components/persons/PersonList';
@@ -21,8 +22,10 @@ export default function PersonsPage() {
     try {
       await createMutation.mutateAsync(data);
       setIsCreateDialogOpen(false);
+      toast.success('Kontakt erfolgreich erstellt');
     } catch (error) {
       console.error('Failed to create person:', error);
+      toast.error('Fehler beim Erstellen des Kontakts');
     }
   };
 
@@ -32,8 +35,10 @@ export default function PersonsPage() {
     try {
       await updateMutation.mutateAsync({ id: editingPerson.id, ...data });
       setEditingPerson(null);
+      toast.success('Kontakt erfolgreich aktualisiert');
     } catch (error) {
       console.error('Failed to update person:', error);
+      toast.error('Fehler beim Aktualisieren des Kontakts');
     }
   };
 
@@ -44,8 +49,10 @@ export default function PersonsPage() {
 
     try {
       await deleteMutation.mutateAsync(id);
+      toast.success('Kontakt erfolgreich gelöscht');
     } catch (error) {
       console.error('Failed to delete person:', error);
+      toast.error('Fehler beim Löschen des Kontakts');
     }
   };
 

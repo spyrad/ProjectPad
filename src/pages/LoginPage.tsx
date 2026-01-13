@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -26,10 +27,13 @@ export default function LoginPage() {
     try {
       setError(null);
       await signIn(data.email, data.password);
+      toast.success('Erfolgreich angemeldet!');
       navigate('/app');
     } catch (err) {
       console.error('Login error:', err);
-      setError('Anmeldung fehlgeschlagen. Bitte überprüfe deine Anmeldedaten.');
+      const errorMessage = 'Anmeldung fehlgeschlagen. Bitte überprüfe deine Anmeldedaten.';
+      setError(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
