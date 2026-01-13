@@ -27,7 +27,7 @@ export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
     : note.content;
 
   return (
-    <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 bg-gradient-to-br from-slate-50/30 to-transparent border-l-4 border-l-primary/20">
+    <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 bg-gradient-to-br from-slate-50/30 to-transparent dark:from-slate-900/20 border-l-4 border-l-primary/20">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">

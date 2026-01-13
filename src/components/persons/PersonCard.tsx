@@ -13,7 +13,7 @@ interface PersonCardProps {
 export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
   const navigate = useNavigate();
   return (
-    <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 bg-gradient-to-br from-purple-50/30 to-transparent border-l-4 border-l-purple-500/50">
+    <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 bg-gradient-to-br from-purple-50/30 to-transparent dark:from-purple-950/20 border-l-4 border-l-purple-500/50">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex-1">

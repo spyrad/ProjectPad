@@ -19,19 +19,19 @@ const statusConfig: Record<
     label: 'Aktiv',
     color: 'bg-green-500 hover:bg-green-600',
     icon: <CheckCircle className="h-3 w-3" />,
-    gradient: 'bg-gradient-to-br from-green-50/50 to-transparent',
+    gradient: 'bg-gradient-to-br from-green-50/50 to-transparent dark:from-green-950/20',
   },
   paused: {
     label: 'Pausiert',
     color: 'bg-yellow-500 hover:bg-yellow-600',
     icon: <Pause className="h-3 w-3" />,
-    gradient: 'bg-gradient-to-br from-yellow-50/50 to-transparent',
+    gradient: 'bg-gradient-to-br from-yellow-50/50 to-transparent dark:from-yellow-950/20',
   },
   completed: {
     label: 'Abgeschlossen',
     color: 'bg-blue-500 hover:bg-blue-600',
     icon: <Trophy className="h-3 w-3" />,
-    gradient: 'bg-gradient-to-br from-blue-50/50 to-transparent',
+    gradient: 'bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20',
   },
 };
 

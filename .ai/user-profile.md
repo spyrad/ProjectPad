@@ -595,12 +595,41 @@
 
 **Nächste mögliche Schritte (Optional):**
 - [ ] i18n Feature (Deutsch ↔ Polnisch Umschalter) - ~4-6h
-- [ ] Dark Mode (~2-3h)
-- [ ] Toast Notifications (~30 Min)
+- [x] Dark Mode (~2-3h) - FERTIG!
+- [x] Toast Notifications (~30 Min) - FERTIG!
 - [ ] Projekt-Farben (~2-3h)
 - [ ] Markdown-Support für Notizen
 - [ ] AI-Features
 
+### Session 2026-01-13 (Dark Mode implementiert! 🌙)
+- **Dark Mode Feature komplett implementiert:**
+  - `ThemeContext.tsx` erstellt (light/dark/system mit localStorage)
+  - `ThemeToggle.tsx` Component mit Dropdown Menu (Sonne/Mond/Monitor Icons)
+  - Dropdown Menu Component installiert (shadcn/ui)
+  - ThemeProvider in App.tsx integriert
+  - ThemeToggle ins AppLayout eingebaut (neben E-Mail-Adresse)
+  - **Dark Mode Gradienten optimiert**: Subtile, dunkle Gradienten für Cards
+    - ProjectCard: green-950/20, yellow-950/20, blue-950/20
+    - PersonCard: purple-950/20
+    - NoteCard: slate-900/20
+  - Theme-Präferenz wird in LocalStorage gespeichert
+  - System-Theme Detection (folgt OS Dark Mode)
+  - Build erfolgreich getestet ✓
+
+- **Geänderte Dateien:**
+  - package.json, package-lock.json (+@radix-ui/react-dropdown-menu)
+  - src/App.tsx (ThemeProvider wrapper)
+  - src/components/layout/AppLayout.tsx (ThemeToggle eingebaut)
+  - src/components/layout/ThemeToggle.tsx (neu, 40 Zeilen)
+  - src/components/ui/dropdown-menu.tsx (neu, shadcn/ui)
+  - src/contexts/ThemeContext.tsx (neu, 72 Zeilen)
+  - ProjectCard, PersonCard, NoteCard (dark: Gradienten)
+  - README.md (Dark Mode Feature dokumentiert)
+
+- **Git Commit:** (wird erstellt)
+
+**Nächster Schritt:** i18n Feature (Deutsch ↔ Polnisch Umschalter) implementieren
+
 ---
 *Erstellt: 2025-12-14*
-*Aktualisiert: 2026-01-12 (UI Quick Wins abgeschlossen)*
+*Aktualisiert: 2026-01-13 (Dark Mode abgeschlossen)*

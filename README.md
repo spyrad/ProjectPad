@@ -21,6 +21,7 @@ Persönlicher Projekt-Assistent mit Notepad-Feeling
 - ✅ **Dashboard mit Live-Statistiken** (2026-01-12)
 - ✅ **Toast Notifications** (sonner) (2026-01-12)
 - ✅ **UI Polish** - Gradienten, Icons, verbesserte Empty States (2026-01-12)
+- ✅ **Dark Mode** - Light/Dark/System Theme mit optimierten Gradienten (2026-01-13)
 
 ### Production Ready
 - ✅ **CI/CD Pipeline mit GitHub Actions** (2026-01-03)
@@ -203,6 +204,13 @@ Alle 7 10xDevs-Zertifikat-Kriterien erfüllt:
 - **Verbesserte Empty States** mit großen Icons und hilfreichen Texten
 - **Farbige Border** (border-l-4) für visuelle Hierarchie
 
+### Dark Mode
+- **3 Theme-Modi**: Light / Dark / System (folgt OS-Einstellung)
+- **Theme-Toggle** im Header mit Sonne/Mond Icon
+- **Optimierte Gradienten** für Dark Mode (subtile, dunkle Töne)
+- **LocalStorage**: Theme-Präferenz wird gespeichert
+- **Smooth Transitions**: Nahtloser Wechsel zwischen Themes
+
 ---
 
 *Erstellt mit Claude Code - 10xDevs Kurs*
@@ -213,3 +221,4 @@ Alle 7 10xDevs-Zertifikat-Kriterien erfüllt:
 - 2026-01-08: Deployment Dokumentation
 - 2026-01-10: **LIVE on Production + Certification Validated** 🏆
 - 2026-01-12: **UI/UX Polish** - Dashboard, Toast Notifications, Visual Design ✨
+- 2026-01-13: **Dark Mode** - Light/Dark/System Theme mit optimierten Gradienten 🌙

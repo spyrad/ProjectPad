@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LogOut, FolderKanban, Users, FileText } from 'lucide-react';
 
 export function AppLayout() {
@@ -53,6 +54,7 @@ export function AppLayout() {
               <span className="text-sm text-muted-foreground">
                 {user?.email}
               </span>
+              <ThemeToggle />
               <Button
                 variant="ghost"
                 size="sm"
