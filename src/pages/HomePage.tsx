@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { useNavigate } from 'react-router-dom'
 import { FolderKanban, Users, StickyNote, Clock } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -33,6 +34,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      {/* Language Switcher - Top Right */}
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher />
+      </div>
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto text-center space-y-8">

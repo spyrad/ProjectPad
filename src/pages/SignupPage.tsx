@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { getSignUpSchema, type SignUpFormData } from '@/lib/validations-i18n';
 import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -43,6 +44,10 @@ export default function SignupPage() {
   if (success) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        {/* Language Switcher - Top Right */}
+        <div className="absolute top-4 right-4">
+          <LanguageSwitcher />
+        </div>
         <Card className="w-full max-w-md">
           <CardHeader>
             <CardTitle>{t('signup.successTitle')}</CardTitle>
@@ -65,6 +70,10 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      {/* Language Switcher - Top Right */}
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>{t('signup.title')}</CardTitle>
