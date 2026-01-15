@@ -8,12 +8,14 @@ import { Input } from '@/components/ui/input';
 import { useProjectPersons, useAddPersonToProject, useRemovePersonFromProject } from '@/hooks/useProjectPersons';
 import { usePersons } from '@/hooks/usePersons';
 import { Plus, X, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectPersonsProps {
   projectId: string;
 }
 
 export function ProjectPersons({ projectId }: ProjectPersonsProps) {
+  const { t } = useTranslation();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedPersonId, setSelectedPersonId] = useState<string>('');
   const [projectRole, setProjectRole] = useState('');
@@ -46,7 +48,7 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
   };
 
   const handleRemove = async (personId: string) => {
-    if (!confirm('Möchtest du diese Person wirklich vom Projekt entfernen?')) {
+    if (!confirm(t('projects.persons.removeConfirm'))) {
       return;
     }
 
@@ -65,7 +67,7 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Beteiligte...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('projects.persons.loading')}</p>
         </div>
       </div>
     );
@@ -75,7 +77,7 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden der Beteiligten</p>
+          <p>{t('projects.persons.error')}</p>
           <p className="text-sm mt-2">{error.message}</p>
         </div>
       </div>
@@ -86,9 +88,9 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Beteiligte</h2>
+          <h2 className="text-2xl font-bold">{t('projects.persons.title')}</h2>
           <p className="text-muted-foreground mt-1">
-            Personen, die an diesem Projekt beteiligt sind
+            {t('projects.persons.description')}
           </p>
         </div>
         <Button
@@ -97,7 +99,7 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
           disabled={availablePersons.length === 0}
         >
           <Plus className="h-4 w-4" />
-          Person hinzufügen
+          {t('projects.persons.addButton')}
         </Button>
       </div>
 
@@ -105,9 +107,9 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
       {!projectPersons || projectPersons.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <User className="h-16 w-16 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Keine Beteiligten</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('projects.persons.emptyTitle')}</h3>
           <p className="text-muted-foreground mb-4">
-            Füge Personen hinzu, um sie diesem Projekt zuzuordnen
+            {t('projects.persons.emptyDescription')}
           </p>
           <Button
             onClick={() => setIsAddDialogOpen(true)}
@@ -115,7 +117,7 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
             disabled={availablePersons.length === 0}
           >
             <Plus className="h-4 w-4" />
-            Erste Person hinzufügen
+            {t('projects.persons.firstPersonButton')}
           </Button>
         </div>
       ) : (
@@ -128,7 +130,7 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
                     <h3 className="font-semibold">{pp.person.name}</h3>
                     {pp.project_role && (
                       <p className="text-sm text-muted-foreground mt-1">
-                        {pp.project_role}
+                        {t('projects.persons.roleCardLabel')} {pp.project_role}
                       </p>
                     )}
                     {pp.person.role && (
@@ -156,22 +158,22 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Person zum Projekt hinzufügen</DialogTitle>
+            <DialogTitle>{t('projects.persons.addDialogTitle')}</DialogTitle>
             <DialogDescription>
-              Wähle eine Person aus und definiere optional ihre Rolle im Projekt
+              {t('projects.persons.addDialogDescription')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="person">Person *</Label>
+              <Label htmlFor="person">{t('projects.persons.personLabel')}</Label>
               <Select value={selectedPersonId} onValueChange={setSelectedPersonId}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Person auswählen" />
+                  <SelectValue placeholder={t('projects.persons.personPlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
                   {availablePersons.length === 0 ? (
                     <SelectItem value="none" disabled>
-                      Keine Personen verfügbar
+                      {t('projects.persons.noPersons')}
                     </SelectItem>
                   ) : (
                     availablePersons.map((person) => (
@@ -185,10 +187,10 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="project_role">Rolle im Projekt (optional)</Label>
+              <Label htmlFor="project_role">{t('projects.persons.roleLabel')}</Label>
               <Input
                 id="project_role"
-                placeholder="z.B. Lead Developer, Designer, ..."
+                placeholder={t('projects.persons.rolePlaceholder')}
                 value={projectRole}
                 onChange={(e) => setProjectRole(e.target.value)}
               />
@@ -196,10 +198,10 @@ export function ProjectPersons({ projectId }: ProjectPersonsProps) {
 
             <div className="flex justify-end gap-2 pt-4">
               <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
-                Abbrechen
+                {t('projects.persons.cancelButton')}
               </Button>
               <Button onClick={handleAdd} disabled={!selectedPersonId || addMutation.isPending}>
-                {addMutation.isPending ? 'Wird hinzugefügt...' : 'Hinzufügen'}
+                {addMutation.isPending ? t('projects.persons.adding') : t('projects.persons.addButtonSubmit')}
               </Button>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2, FileText } from 'lucide-react';
 import type { Note } from '@/types/entities';
+import { useTranslation } from 'react-i18next';
 
 interface NoteCardProps {
   note: Note;
@@ -10,6 +11,7 @@ interface NoteCardProps {
 }
 
 export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
+  const { t } = useTranslation();
   const formattedDate = new Date(note.created_at).toLocaleDateString('de-DE', {
     day: '2-digit',
     month: '2-digit',
@@ -32,7 +34,7 @@ export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <FileText className="h-4 w-4 text-primary" />
-            <span>{formattedDate} um {formattedTime}</span>
+            <span>{formattedDate} {t('notes.card.datetimeSeparator')} {formattedTime}</span>
           </div>
         </div>
       </CardHeader>
@@ -48,7 +50,7 @@ export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
                 className="flex items-center gap-2"
               >
                 <Edit className="h-4 w-4" />
-                Bearbeiten
+                {t('notes.card.editButton')}
               </Button>
             )}
             {onDelete && (
@@ -59,7 +61,7 @@ export function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
                 className="flex items-center gap-2 text-red-600 hover:text-red-700"
               >
                 <Trash2 className="h-4 w-4" />
-                Löschen
+                {t('notes.card.deleteButton')}
               </Button>
             )}
           </div>

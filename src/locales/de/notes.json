@@ -1,0 +1,52 @@
+{
+  "page": {
+    "title": "Notizen",
+    "subtitle": "Erfasse deine Gedanken und Ideen",
+    "loading": "Lade Notizen...",
+    "error": "Fehler beim Laden der Notizen",
+    "createButton": "Neue Notiz"
+  },
+  "form": {
+    "createTitle": "Neue Notiz erstellen",
+    "createDescription": "Erfasse eine neue Notiz mit optionaler Projektzuordnung",
+    "editTitle": "Notiz bearbeiten",
+    "editDescription": "Bearbeite den Inhalt deiner Notiz",
+    "contentLabel": "Notiz *",
+    "contentPlaceholder": "Notiz schreiben... (Ctrl+Enter zum Speichern)",
+    "projectLabel": "Projekt (optional)",
+    "projectPlaceholder": "Kein Projekt zugeordnet",
+    "noProjectOption": "Kein Projekt",
+    "personLabel": "Person (optional)",
+    "personPlaceholder": "Keine Person zugeordnet",
+    "noPersonOption": "Keine Person",
+    "submitCreate": "Notiz erstellen",
+    "submitEdit": "Änderungen speichern",
+    "submitting": "Wird gespeichert...",
+    "saveShortcut": "Strg+Enter zum Speichern"
+  },
+  "list": {
+    "emptyTitle": "Noch keine Notizen",
+    "emptyDescription": "Erfasse deine ersten Gedanken und Ideen. Drücke Ctrl+Enter zum schnellen Speichern."
+  },
+  "card": {
+    "datetimeSeparator": "um",
+    "editButton": "Bearbeiten",
+    "deleteButton": "Löschen"
+  },
+  "dashboard": {
+    "recentTitle": "Letzte Notizen",
+    "viewAll": "Alle anzeigen",
+    "loading": "Lade Notizen...",
+    "noNotes": "Noch keine Notizen vorhanden.",
+    "quickAccess": "Schnellzugriff",
+    "captureNotes": "Erfasse deine Notizen"
+  },
+  "toast": {
+    "created": "Notiz erfolgreich erstellt",
+    "updated": "Notiz erfolgreich aktualisiert",
+    "deleted": "Notiz erfolgreich gelöscht",
+    "createError": "Fehler beim Erstellen der Notiz",
+    "updateError": "Fehler beim Aktualisieren der Notiz",
+    "deleteError": "Fehler beim Löschen der Notiz"
+  }
+}

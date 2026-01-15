@@ -8,8 +8,10 @@ import { useProjects, useCreateProject, useUpdateProject, useDeleteProject } fro
 import { Plus } from 'lucide-react';
 import type { Project } from '@/types/entities';
 import type { ProjectFormData } from '@/lib/validations';
+import { useTranslation } from 'react-i18next';
 
 export default function ProjectsPage() {
+  const { t } = useTranslation();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
 
@@ -22,10 +24,10 @@ export default function ProjectsPage() {
     try {
       await createMutation.mutateAsync(data);
       setIsCreateDialogOpen(false);
-      toast.success('Projekt erfolgreich erstellt');
+      toast.success(t('projects.toast.created'));
     } catch (error) {
       console.error('Failed to create project:', error);
-      toast.error('Fehler beim Erstellen des Projekts');
+      toast.error(t('projects.toast.createError'));
     }
   };
 
@@ -35,24 +37,24 @@ export default function ProjectsPage() {
     try {
       await updateMutation.mutateAsync({ id: editingProject.id, ...data });
       setEditingProject(null);
-      toast.success('Projekt erfolgreich aktualisiert');
+      toast.success(t('projects.toast.updated'));
     } catch (error) {
       console.error('Failed to update project:', error);
-      toast.error('Fehler beim Aktualisieren des Projekts');
+      toast.error(t('projects.toast.updateError'));
     }
   };
 
   const handleDelete = async (id: string): Promise<void> => {
-    if (!confirm('Möchtest du dieses Projekt wirklich löschen? Alle zugehörigen Notizen werden ebenfalls gelöscht.')) {
+    if (!confirm(t('confirmation.deleteProject'))) {
       return;
     }
 
     try {
       await deleteMutation.mutateAsync(id);
-      toast.success('Projekt erfolgreich gelöscht');
+      toast.success(t('projects.toast.deleted'));
     } catch (error) {
       console.error('Failed to delete project:', error);
-      toast.error('Fehler beim Löschen des Projekts');
+      toast.error(t('projects.toast.deleteError'));
     }
   };
 
@@ -61,7 +63,7 @@ export default function ProjectsPage() {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Projekte...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('projects.page.loading')}</p>
         </div>
       </div>
     );
@@ -71,7 +73,7 @@ export default function ProjectsPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden der Projekte</p>
+          <p>{t('projects.page.error')}</p>
           <p className="text-sm mt-2">{error.message}</p>
         </div>
       </div>
@@ -82,14 +84,14 @@ export default function ProjectsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Projekte</h1>
+          <h1 className="text-3xl font-bold">{t('projects.page.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            Verwalte deine Projekte und behalte den Überblick
+            {t('projects.page.subtitle')}
           </p>
         </div>
         <Button onClick={() => setIsCreateDialogOpen(true)} className="flex items-center gap-2">
           <Plus className="h-4 w-4" />
-          Neues Projekt
+          {t('projects.page.createButton')}
         </Button>
       </div>
 
@@ -103,9 +105,9 @@ export default function ProjectsPage() {
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Neues Projekt erstellen</DialogTitle>
+            <DialogTitle>{t('projects.form.createTitle')}</DialogTitle>
             <DialogDescription>
-              Erstelle ein neues Projekt für deine Notizen und Aufgaben
+              {t('projects.form.createDescription')}
             </DialogDescription>
           </DialogHeader>
           <ProjectForm
@@ -119,9 +121,9 @@ export default function ProjectsPage() {
       <Dialog open={!!editingProject} onOpenChange={() => setEditingProject(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Projekt bearbeiten</DialogTitle>
+            <DialogTitle>{t('projects.form.editTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite die Projektinformationen
+              {t('projects.form.editDescription')}
             </DialogDescription>
           </DialogHeader>
           {editingProject && (

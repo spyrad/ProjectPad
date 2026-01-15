@@ -7,8 +7,10 @@ import { useProjects } from '@/hooks/useProjects';
 import { useNotes } from '@/hooks/useNotes';
 import { usePersons } from '@/hooks/usePersons';
 import { formatRelativeDate } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { data: projects, isLoading: projectsLoading } = useProjects();
   const { data: notes, isLoading: notesLoading } = useNotes();
@@ -30,26 +32,26 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Welcome Header */}
       <div>
-        <h1 className="text-3xl font-bold">Willkommen zurück!</h1>
+        <h1 className="text-3xl font-bold">{t('dashboard.welcomeBack')}</h1>
         <p className="text-muted-foreground mt-2">
-          Angemeldet als {user?.email}
+          {t('dashboard.loggedInAs', { email: user?.email })}
         </p>
       </div>
 
       {/* Statistics */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">Übersicht</h2>
+        <h2 className="text-xl font-semibold mb-4">{t('dashboard.overview')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           <Card>
             <CardHeader className="pb-3">
               <CardDescription className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-500" />
-                Aktiv
+                {t('dashboard.statsActive')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-2xl font-bold">{projectsLoading ? '-' : stats.activeProjects}</p>
-              <p className="text-xs text-muted-foreground">Projekte</p>
+              <p className="text-xs text-muted-foreground">{t('dashboard.statsProjects')}</p>
             </CardContent>
           </Card>
 
@@ -57,12 +59,12 @@ export default function DashboardPage() {
             <CardHeader className="pb-3">
               <CardDescription className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-blue-500" />
-                Abgeschlossen
+                {t('dashboard.statsCompleted')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-2xl font-bold">{projectsLoading ? '-' : stats.completedProjects}</p>
-              <p className="text-xs text-muted-foreground">Projekte</p>
+              <p className="text-xs text-muted-foreground">{t('dashboard.statsProjects')}</p>
             </CardContent>
           </Card>
 
@@ -70,12 +72,12 @@ export default function DashboardPage() {
             <CardHeader className="pb-3">
               <CardDescription className="flex items-center gap-2">
                 <Pause className="h-4 w-4 text-yellow-500" />
-                Pausiert
+                {t('dashboard.statsPaused')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-2xl font-bold">{projectsLoading ? '-' : stats.pausedProjects}</p>
-              <p className="text-xs text-muted-foreground">Projekte</p>
+              <p className="text-xs text-muted-foreground">{t('dashboard.statsProjects')}</p>
             </CardContent>
           </Card>
 
@@ -83,12 +85,12 @@ export default function DashboardPage() {
             <CardHeader className="pb-3">
               <CardDescription className="flex items-center gap-2">
                 <FileText className="h-4 w-4" />
-                Notizen
+                {t('dashboard.statsNotes')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-2xl font-bold">{notesLoading ? '-' : stats.totalNotes}</p>
-              <p className="text-xs text-muted-foreground">Gesamt</p>
+              <p className="text-xs text-muted-foreground">{t('dashboard.statsTotal')}</p>
             </CardContent>
           </Card>
 
@@ -96,12 +98,12 @@ export default function DashboardPage() {
             <CardHeader className="pb-3">
               <CardDescription className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
-                Kontakte
+                {t('dashboard.statsPersons')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-2xl font-bold">{personsLoading ? '-' : stats.totalPersons}</p>
-              <p className="text-xs text-muted-foreground">Gesamt</p>
+              <p className="text-xs text-muted-foreground">{t('dashboard.statsTotal')}</p>
             </CardContent>
           </Card>
         </div>
@@ -110,22 +112,22 @@ export default function DashboardPage() {
       {/* Recent Notes */}
       <div>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Letzte Notizen</h2>
+          <h2 className="text-xl font-semibold">{t('dashboard.recentNotes')}</h2>
           <Button asChild variant="outline" size="sm">
-            <Link to="/app/notes">Alle anzeigen</Link>
+            <Link to="/app/notes">{t('dashboard.viewAll')}</Link>
           </Button>
         </div>
 
         {notesLoading ? (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Lade Notizen...</p>
+              <p className="text-sm text-muted-foreground">{t('dashboard.loadingNotes')}</p>
             </CardContent>
           </Card>
         ) : recentNotes.length === 0 ? (
           <Card>
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground">Noch keine Notizen vorhanden.</p>
+              <p className="text-sm text-muted-foreground">{t('dashboard.noNotes')}</p>
             </CardContent>
           </Card>
         ) : (
@@ -146,15 +148,15 @@ export default function DashboardPage() {
 
       {/* Quick Actions */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">Schnellzugriff</h2>
+        <h2 className="text-xl font-semibold mb-4">{t('dashboard.quickAccess')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link to="/app/projects">
             <Card className="hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader>
                 <FolderKanban className="h-8 w-8 mb-2 text-primary" />
-                <CardTitle>Projekte</CardTitle>
+                <CardTitle>{t('navigation.projects')}</CardTitle>
                 <CardDescription>
-                  Verwalte deine Projekte
+                  {t('dashboard.manageProjects')}
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -164,9 +166,9 @@ export default function DashboardPage() {
             <Card className="hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader>
                 <Users className="h-8 w-8 mb-2 text-primary" />
-                <CardTitle>Kontakte</CardTitle>
+                <CardTitle>{t('navigation.persons')}</CardTitle>
                 <CardDescription>
-                  Verwalte deine Kontakte
+                  {t('dashboard.managePersons')}
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -176,9 +178,9 @@ export default function DashboardPage() {
             <Card className="hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader>
                 <FileText className="h-8 w-8 mb-2 text-primary" />
-                <CardTitle>Notizen</CardTitle>
+                <CardTitle>{t('navigation.notes')}</CardTitle>
                 <CardDescription>
-                  Erfasse deine Notizen
+                  {t('dashboard.captureNotes')}
                 </CardDescription>
               </CardHeader>
             </Card>

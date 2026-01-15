@@ -1,0 +1,82 @@
+{
+  "page": {
+    "title": "Kontakte",
+    "subtitle": "Verwalte deine Kontakte und Projektbeteiligten",
+    "loading": "Lade Kontakte...",
+    "error": "Fehler beim Laden der Kontakte",
+    "createButton": "Neuer Kontakt"
+  },
+  "form": {
+    "createTitle": "Neuen Kontakt erstellen",
+    "createDescription": "Erstelle einen neuen Kontakt für deine Projekte",
+    "editTitle": "Kontakt bearbeiten",
+    "editDescription": "Bearbeite die Kontaktinformationen",
+    "nameLabel": "Name *",
+    "namePlaceholder": "Max Mustermann",
+    "roleLabel": "Rolle",
+    "rolePlaceholder": "z.B. Projektmanager, Entwickler, Designer...",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Kurze Beschreibung der Person...",
+    "expertiseLabel": "Expertise",
+    "expertisePlaceholder": "Fachkenntnisse und Kompetenzen...",
+    "contactLabel": "Kontaktinformationen",
+    "contactPlaceholder": "E-Mail, Telefon, etc.",
+    "submitCreate": "Person erstellen",
+    "submitEdit": "Änderungen speichern",
+    "submitting": "Wird gespeichert..."
+  },
+  "detail": {
+    "loading": "Lade Person...",
+    "error": "Fehler beim Laden der Person",
+    "notFound": "Person nicht gefunden",
+    "backButton": "Zurück zu Kontakten",
+    "tabOverview": "Übersicht",
+    "tabProjects": "Projekte ({{count}})",
+    "tabNotes": "Notizen ({{count}})",
+    "editButton": "Bearbeiten",
+    "deleteButton": "Löschen",
+    "infoTitle": "Informationen",
+    "descriptionLabel": "Beschreibung:",
+    "expertiseLabel": "Expertise:",
+    "contactLabel": "Kontakt:",
+    "statsTitle": "Statistiken",
+    "projectsLabel": "Projekte:",
+    "notesLabel": "Notizen:",
+    "noProjects": "Keine Projekte",
+    "noProjectsDesc": "Diese Person ist noch keinem Projekt zugeordnet",
+    "projectsTitle": "Projekte",
+    "roleLabel": "Rolle:",
+    "noNotes": "Keine Notizen",
+    "noNotesDesc": "Erstelle die erste Notiz für diese Person",
+    "notesTitle": "Notizen",
+    "notesDescription": "Alle Notizen zu dieser Person",
+    "newNote": "Neue Notiz",
+    "firstNoteButton": "Erste Notiz erstellen",
+    "editDialogTitle": "Person bearbeiten",
+    "editDialogDescription": "Bearbeite die Informationen dieser Person",
+    "createNoteDialogTitle": "Neue Notiz erstellen",
+    "createNoteDialogDescription": "Erstelle eine neue Notiz für {{name}}",
+    "editNoteDialogTitle": "Notiz bearbeiten",
+    "editNoteDialogDescription": "Bearbeite die Notizinformationen",
+    "deleteConfirm": "Möchtest du diese Person wirklich löschen? Die Person wird von allen Projekten entfernt."
+  },
+  "list": {
+    "emptyTitle": "Noch keine Kontakte",
+    "emptyDescription": "Lege deine ersten Kontakte an, um sie mit Projekten und Notizen zu verknüpfen."
+  },
+  "card": {
+    "descriptionLabel": "Beschreibung:",
+    "expertiseLabel": "Expertise:",
+    "viewButton": "Anzeigen",
+    "editButton": "Bearbeiten",
+    "deleteButton": "Löschen"
+  },
+  "toast": {
+    "created": "Kontakt erfolgreich erstellt",
+    "updated": "Kontakt erfolgreich aktualisiert",
+    "deleted": "Kontakt erfolgreich gelöscht",
+    "createError": "Fehler beim Erstellen des Kontakts",
+    "updateError": "Fehler beim Aktualisieren des Kontakts",
+    "deleteError": "Fehler beim Löschen des Kontakts"
+  }
+}

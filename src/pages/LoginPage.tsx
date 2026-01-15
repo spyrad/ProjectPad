@@ -8,30 +8,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
-import { signInSchema, type SignInFormData } from '@/lib/validations';
+import { getSignInSchema, type SignInFormData } from '@/lib/validations-i18n';
+import { useTranslation } from 'react-i18next';
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const { signIn } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation('auth');
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<SignInFormData>({
-    resolver: zodResolver(signInSchema),
+    resolver: zodResolver(getSignInSchema()),
   });
 
   const onSubmit = async (data: SignInFormData): Promise<void> => {
     try {
       setError(null);
       await signIn(data.email, data.password);
-      toast.success('Erfolgreich angemeldet!');
+      toast.success(t('login.success'));
       navigate('/app');
     } catch (err) {
       console.error('Login error:', err);
-      const errorMessage = 'Anmeldung fehlgeschlagen. Bitte überprüfe deine Anmeldedaten.';
+      const errorMessage = t('login.error');
       setError(errorMessage);
       toast.error(errorMessage);
     }
@@ -41,19 +43,19 @@ export default function LoginPage() {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Anmelden</CardTitle>
+          <CardTitle>{t('login.title')}</CardTitle>
           <CardDescription>
-            Melde dich bei deinem ProjectPad-Konto an
+            {t('login.subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">E-Mail</Label>
+              <Label htmlFor="email">{t('login.emailLabel')}</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="deine@email.de"
+                placeholder={t('login.emailPlaceholder')}
                 {...register('email')}
                 className={errors.email ? 'border-red-500' : ''}
               />
@@ -62,11 +64,11 @@ export default function LoginPage() {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Passwort</Label>
+              <Label htmlFor="password">{t('login.passwordLabel')}</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder={t('login.passwordPlaceholder')}
                 {...register('password')}
                 className={errors.password ? 'border-red-500' : ''}
               />
@@ -80,11 +82,11 @@ export default function LoginPage() {
               </div>
             )}
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? 'Wird angemeldet...' : 'Anmelden'}
+              {isSubmitting ? t('login.submitting') : t('login.button')}
             </Button>
             <div className="text-center">
               <Link to="/signup" className="text-sm text-muted-foreground hover:text-foreground">
-                Noch kein Konto? Registrieren
+                {t('login.noAccount')} {t('login.signupLink')}
               </Link>
             </div>
           </form>

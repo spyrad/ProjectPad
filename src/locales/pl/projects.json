@@ -1,0 +1,99 @@
+{
+  "page": {
+    "title": "Projekty",
+    "subtitle": "Zarządzaj swoimi projektami i zachowaj porządek",
+    "loading": "Ładowanie projektów...",
+    "error": "Błąd podczas ładowania projektów",
+    "createButton": "Nowy projekt"
+  },
+  "form": {
+    "createTitle": "Utwórz nowy projekt",
+    "createDescription": "Utwórz nowy projekt dla swoich notatek i zadań",
+    "editTitle": "Edytuj projekt",
+    "editDescription": "Edytuj informacje o projekcie",
+    "nameLabel": "Nazwa projektu *",
+    "namePlaceholder": "Mój projekt",
+    "descriptionLabel": "Opis",
+    "descriptionPlaceholder": "Krótki opis projektu...",
+    "statusLabel": "Status *",
+    "statusPlaceholder": "Wybierz status",
+    "goalsLabel": "Cele",
+    "goalsPlaceholder": "Cele projektu...",
+    "deadlineLabel": "Termin",
+    "submitCreate": "Utwórz projekt",
+    "submitEdit": "Zapisz zmiany",
+    "submitting": "Zapisywanie..."
+  },
+  "detail": {
+    "loading": "Ładowanie projektu...",
+    "error": "Błąd podczas ładowania projektu",
+    "notFound": "Projekt nie znaleziony",
+    "backButton": "Wróć do projektów",
+    "tabOverview": "Przegląd",
+    "tabTimeline": "Oś czasu",
+    "tabPersons": "Uczestnicy",
+    "editButton": "Edytuj",
+    "deleteButton": "Usuń",
+    "goalsTitle": "Cele projektu",
+    "noGoals": "Brak zdefiniowanych celów",
+    "deadlineTitle": "Termin",
+    "noDeadline": "Brak terminu",
+    "metadataTitle": "Informacje o projekcie",
+    "createdAt": "Utworzono:",
+    "updatedAt": "Ostatnia aktualizacja:"
+  },
+  "list": {
+    "emptyTitle": "Brak projektów",
+    "emptyDescription": "Rozpocznij swój pierwszy projekt i przechowuj wszystkie ważne informacje w jednym miejscu."
+  },
+  "card": {
+    "goalsLabel": "Cele:",
+    "deadlineLabel": "Termin:",
+    "viewButton": "Pokaż",
+    "editButton": "Edytuj",
+    "deleteButton": "Usuń"
+  },
+  "timeline": {
+    "title": "Oś czasu",
+    "description": "Wszystkie notatki do tego projektu w kolejności chronologicznej",
+    "loading": "Ładowanie notatek...",
+    "error": "Błąd podczas ładowania notatek",
+    "emptyTitle": "Brak notatek",
+    "emptyDescription": "Rozpocznij od pierwszej notatki i dokumentuj ważne myśli związane z tym projektem.",
+    "firstNoteButton": "Utwórz pierwszą notatkę",
+    "createDialogTitle": "Utwórz nową notatkę",
+    "createDialogDescription": "Utwórz nową notatkę dla tego projektu",
+    "editDialogTitle": "Edytuj notatkę",
+    "editDialogDescription": "Edytuj informacje o notatce"
+  },
+  "persons": {
+    "title": "Uczestnicy",
+    "description": "Osoby zaangażowane w ten projekt",
+    "addButton": "Dodaj osobę",
+    "loading": "Ładowanie uczestników...",
+    "error": "Błąd podczas ładowania uczestników",
+    "emptyTitle": "Brak uczestników",
+    "emptyDescription": "Dodaj osoby, aby przypisać je do tego projektu",
+    "firstPersonButton": "Dodaj pierwszą osobę",
+    "removeConfirm": "Czy na pewno chcesz usunąć tę osobę z projektu?",
+    "addDialogTitle": "Dodaj osobę do projektu",
+    "addDialogDescription": "Wybierz osobę i opcjonalnie zdefiniuj jej rolę w projekcie",
+    "personLabel": "Osoba *",
+    "personPlaceholder": "Wybierz osobę",
+    "noPersons": "Brak dostępnych osób",
+    "roleLabel": "Rola w projekcie (opcjonalnie)",
+    "rolePlaceholder": "np. Lead Developer, Designer, ...",
+    "cancelButton": "Anuluj",
+    "adding": "Dodawanie...",
+    "addButtonSubmit": "Dodaj",
+    "roleCardLabel": "Rola:"
+  },
+  "toast": {
+    "created": "Projekt utworzony pomyślnie",
+    "updated": "Projekt zaktualizowany pomyślnie",
+    "deleted": "Projekt usunięty pomyślnie",
+    "createError": "Błąd podczas tworzenia projektu",
+    "updateError": "Błąd podczas aktualizacji projektu",
+    "deleteError": "Błąd podczas usuwania projektu"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "page": {
+    "title": "Notatki",
+    "subtitle": "Zapisuj swoje myśli i pomysły",
+    "loading": "Ładowanie notatek...",
+    "error": "Błąd podczas ładowania notatek",
+    "createButton": "Nowa notatka"
+  },
+  "form": {
+    "createTitle": "Utwórz nową notatkę",
+    "createDescription": "Utwórz nową notatkę z opcjonalnym przypisaniem do projektu",
+    "editTitle": "Edytuj notatkę",
+    "editDescription": "Edytuj treść swojej notatki",
+    "contentLabel": "Notatka *",
+    "contentPlaceholder": "Napisz notatkę... (Ctrl+Enter aby zapisać)",
+    "projectLabel": "Projekt (opcjonalnie)",
+    "projectPlaceholder": "Brak przypisanego projektu",
+    "noProjectOption": "Brak projektu",
+    "personLabel": "Osoba (opcjonalnie)",
+    "personPlaceholder": "Brak przypisanej osoby",
+    "noPersonOption": "Brak osoby",
+    "submitCreate": "Utwórz notatkę",
+    "submitEdit": "Zapisz zmiany",
+    "submitting": "Zapisywanie...",
+    "saveShortcut": "Ctrl+Enter aby zapisać"
+  },
+  "list": {
+    "emptyTitle": "Brak notatek",
+    "emptyDescription": "Zapisz swoje pierwsze myśli i pomysły. Naciśnij Ctrl+Enter, aby szybko zapisać."
+  },
+  "card": {
+    "datetimeSeparator": "o",
+    "editButton": "Edytuj",
+    "deleteButton": "Usuń"
+  },
+  "dashboard": {
+    "recentTitle": "Ostatnie notatki",
+    "viewAll": "Pokaż wszystkie",
+    "loading": "Ładowanie notatek...",
+    "noNotes": "Brak notatek.",
+    "quickAccess": "Szybki dostęp",
+    "captureNotes": "Zapisuj swoje notatki"
+  },
+  "toast": {
+    "created": "Notatka utworzona pomyślnie",
+    "updated": "Notatka zaktualizowana pomyślnie",
+    "deleted": "Notatka usunięta pomyślnie",
+    "createError": "Błąd podczas tworzenia notatki",
+    "updateError": "Błąd podczas aktualizacji notatki",
+    "deleteError": "Błąd podczas usuwania notatki"
+  }
+}

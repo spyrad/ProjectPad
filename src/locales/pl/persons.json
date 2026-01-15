@@ -1,0 +1,82 @@
+{
+  "page": {
+    "title": "Kontakty",
+    "subtitle": "Zarządzaj swoimi kontaktami i uczestnikami projektów",
+    "loading": "Ładowanie kontaktów...",
+    "error": "Błąd podczas ładowania kontaktów",
+    "createButton": "Nowy kontakt"
+  },
+  "form": {
+    "createTitle": "Utwórz nowy kontakt",
+    "createDescription": "Utwórz nowy kontakt dla swoich projektów",
+    "editTitle": "Edytuj kontakt",
+    "editDescription": "Edytuj informacje o kontakcie",
+    "nameLabel": "Imię i nazwisko *",
+    "namePlaceholder": "Jan Kowalski",
+    "roleLabel": "Rola",
+    "rolePlaceholder": "np. Kierownik projektu, Programista, Designer...",
+    "descriptionLabel": "Opis",
+    "descriptionPlaceholder": "Krótki opis osoby...",
+    "expertiseLabel": "Ekspertyza",
+    "expertisePlaceholder": "Wiedza specjalistyczna i kompetencje...",
+    "contactLabel": "Informacje kontaktowe",
+    "contactPlaceholder": "E-mail, telefon, itp.",
+    "submitCreate": "Utwórz osobę",
+    "submitEdit": "Zapisz zmiany",
+    "submitting": "Zapisywanie..."
+  },
+  "detail": {
+    "loading": "Ładowanie osoby...",
+    "error": "Błąd podczas ładowania osoby",
+    "notFound": "Osoba nie znaleziona",
+    "backButton": "Wróć do kontaktów",
+    "tabOverview": "Przegląd",
+    "tabProjects": "Projekty ({{count}})",
+    "tabNotes": "Notatki ({{count}})",
+    "editButton": "Edytuj",
+    "deleteButton": "Usuń",
+    "infoTitle": "Informacje",
+    "descriptionLabel": "Opis:",
+    "expertiseLabel": "Ekspertyza:",
+    "contactLabel": "Kontakt:",
+    "statsTitle": "Statystyki",
+    "projectsLabel": "Projekty:",
+    "notesLabel": "Notatki:",
+    "noProjects": "Brak projektów",
+    "noProjectsDesc": "Ta osoba nie jest jeszcze przypisana do żadnego projektu",
+    "projectsTitle": "Projekty",
+    "roleLabel": "Rola:",
+    "noNotes": "Brak notatek",
+    "noNotesDesc": "Utwórz pierwszą notatkę dla tej osoby",
+    "notesTitle": "Notatki",
+    "notesDescription": "Wszystkie notatki związane z tą osobą",
+    "newNote": "Nowa notatka",
+    "firstNoteButton": "Utwórz pierwszą notatkę",
+    "editDialogTitle": "Edytuj osobę",
+    "editDialogDescription": "Edytuj informacje o tej osobie",
+    "createNoteDialogTitle": "Utwórz nową notatkę",
+    "createNoteDialogDescription": "Utwórz nową notatkę dla {{name}}",
+    "editNoteDialogTitle": "Edytuj notatkę",
+    "editNoteDialogDescription": "Edytuj informacje o notatce",
+    "deleteConfirm": "Czy na pewno chcesz usunąć tę osobę? Osoba zostanie usunięta ze wszystkich projektów."
+  },
+  "list": {
+    "emptyTitle": "Brak kontaktów",
+    "emptyDescription": "Utwórz swoje pierwsze kontakty, aby powiązać je z projektami i notatkami."
+  },
+  "card": {
+    "descriptionLabel": "Opis:",
+    "expertiseLabel": "Ekspertyza:",
+    "viewButton": "Pokaż",
+    "editButton": "Edytuj",
+    "deleteButton": "Usuń"
+  },
+  "toast": {
+    "created": "Kontakt utworzony pomyślnie",
+    "updated": "Kontakt zaktualizowany pomyślnie",
+    "deleted": "Kontakt usunięty pomyślnie",
+    "createError": "Błąd podczas tworzenia kontaktu",
+    "updateError": "Błąd podczas aktualizacji kontaktu",
+    "deleteError": "Błąd podczas usuwania kontaktu"
+  }
+}

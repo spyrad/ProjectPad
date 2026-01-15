@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2, Mail, Briefcase, Lightbulb, Eye } from 'lucide-react';
 import type { Person } from '@/types/entities';
+import { useTranslation } from 'react-i18next';
 
 interface PersonCardProps {
   person: Person;
@@ -11,6 +12,7 @@ interface PersonCardProps {
 }
 
 export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 bg-gradient-to-br from-purple-50/30 to-transparent dark:from-purple-950/20 border-l-4 border-l-purple-500/50">
@@ -31,7 +33,7 @@ export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
         <div className="space-y-3">
           {person.description && (
             <div>
-              <p className="text-sm font-medium text-muted-foreground mb-1">Beschreibung:</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t('persons.card.descriptionLabel')}</p>
               <p className="text-sm">{person.description}</p>
             </div>
           )}
@@ -39,7 +41,7 @@ export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
             <div>
               <p className="text-sm font-medium text-muted-foreground mb-1 flex items-center gap-1">
                 <Lightbulb className="h-3 w-3" />
-                Expertise:
+                {t('persons.card.expertiseLabel')}
               </p>
               <p className="text-sm">{person.expertise}</p>
             </div>
@@ -58,7 +60,7 @@ export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
               className="flex items-center gap-2"
             >
               <Eye className="h-4 w-4" />
-              Anzeigen
+              {t('persons.card.viewButton')}
             </Button>
             {onEdit && (
               <Button
@@ -68,7 +70,7 @@ export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
                 className="flex items-center gap-2"
               >
                 <Edit className="h-4 w-4" />
-                Bearbeiten
+                {t('persons.card.editButton')}
               </Button>
             )}
             {onDelete && (
@@ -79,7 +81,7 @@ export function PersonCard({ person, onEdit, onDelete }: PersonCardProps) {
                 className="flex items-center gap-2 text-red-600 hover:text-red-700"
               >
                 <Trash2 className="h-4 w-4" />
-                Löschen
+                {t('persons.card.deleteButton')}
               </Button>
             )}
           </div>

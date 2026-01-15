@@ -2,30 +2,32 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { useNavigate } from 'react-router-dom'
 import { FolderKanban, Users, StickyNote, Clock } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const { t } = useTranslation('translation')
 
   const features = [
     {
       icon: FolderKanban,
-      title: 'Projekte verwalten',
-      description: 'Organisiere deine Projekte mit Status, Zielen und Deadlines',
+      title: t('landing.feature1Title'),
+      description: t('landing.feature1Desc'),
     },
     {
       icon: Users,
-      title: 'Kontakte zuordnen',
-      description: 'Verknüpfe Personen mit deinen Projekten und Notizen',
+      title: t('landing.feature2Title'),
+      description: t('landing.feature2Desc'),
     },
     {
       icon: StickyNote,
-      title: 'Schnelle Notizen',
-      description: 'Notepad-Feeling für blitzschnelle Gedanken und Ideen',
+      title: t('landing.feature3Title'),
+      description: t('landing.feature3Desc'),
     },
     {
       icon: Clock,
-      title: 'Timeline-Ansicht',
-      description: 'Behalte den Überblick mit chronologischer Projektverlauf',
+      title: t('landing.feature4Title'),
+      description: t('landing.feature4Desc'),
     },
   ]
 
@@ -37,20 +39,20 @@ export default function HomePage() {
           {/* Logo & Headline */}
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              ProjectPad
+              {t('common.appName')}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              Dein persönlicher Projekt-Assistent mit Notepad-Feeling
+              {t('landing.tagline')}
             </p>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button onClick={() => navigate('/signup')} size="lg" className="w-full sm:w-auto px-8">
-              Kostenlos starten
+              {t('landing.ctaStart')}
             </Button>
             <Button onClick={() => navigate('/login')} variant="outline" size="lg" className="w-full sm:w-auto px-8">
-              Anmelden
+              {t('landing.ctaLogin')}
             </Button>
           </div>
 
@@ -78,7 +80,7 @@ export default function HomePage() {
 
           {/* Footer Text */}
           <div className="pt-8 text-sm text-muted-foreground">
-            <p>Schnell, einfach, fokussiert – für deine Projekte und Notizen</p>
+            <p>{t('landing.footerText')}</p>
           </div>
         </div>
       </div>

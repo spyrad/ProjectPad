@@ -8,20 +8,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
-import { signUpSchema, type SignUpFormData } from '@/lib/validations';
+import { getSignUpSchema, type SignUpFormData } from '@/lib/validations-i18n';
+import { useTranslation } from 'react-i18next';
 
 export default function SignupPage() {
   const navigate = useNavigate();
   const { signUp } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const { t } = useTranslation('auth');
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
-    resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(getSignUpSchema()),
   });
 
   const onSubmit = async (data: SignUpFormData): Promise<void> => {
@@ -29,10 +31,10 @@ export default function SignupPage() {
       setError(null);
       await signUp(data.email, data.password);
       setSuccess(true);
-      toast.success('Registrierung erfolgreich! Bitte überprüfe deine E-Mail.');
+      toast.success(t('signup.success'));
     } catch (err) {
       console.error('Signup error:', err);
-      const errorMessage = 'Registrierung fehlgeschlagen. Bitte versuche es erneut.';
+      const errorMessage = t('signup.error');
       setError(errorMessage);
       toast.error(errorMessage);
     }
@@ -43,18 +45,17 @@ export default function SignupPage() {
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle>Registrierung erfolgreich!</CardTitle>
+            <CardTitle>{t('signup.successTitle')}</CardTitle>
             <CardDescription>
-              Bitte überprüfe deine E-Mail
+              {t('signup.successDescription')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              Wir haben dir eine Bestätigungs-E-Mail geschickt.
-              Bitte klicke auf den Link in der E-Mail, um dein Konto zu aktivieren.
+              {t('signup.successMessage')}
             </p>
             <Button onClick={() => navigate('/login')} className="w-full">
-              Zur Anmeldung
+              {t('signup.goToLogin')}
             </Button>
           </CardContent>
         </Card>
@@ -66,19 +67,19 @@ export default function SignupPage() {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Registrieren</CardTitle>
+          <CardTitle>{t('signup.title')}</CardTitle>
           <CardDescription>
-            Erstelle ein neues ProjectPad-Konto
+            {t('signup.subtitle')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">E-Mail</Label>
+              <Label htmlFor="email">{t('signup.emailLabel')}</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="deine@email.de"
+                placeholder={t('signup.emailPlaceholder')}
                 {...register('email')}
                 className={errors.email ? 'border-red-500' : ''}
               />
@@ -87,11 +88,11 @@ export default function SignupPage() {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Passwort</Label>
+              <Label htmlFor="password">{t('signup.passwordLabel')}</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Mindestens 8 Zeichen"
+                placeholder={t('signup.passwordPlaceholder')}
                 {...register('password')}
                 className={errors.password ? 'border-red-500' : ''}
               />
@@ -100,11 +101,11 @@ export default function SignupPage() {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Passwort bestätigen</Label>
+              <Label htmlFor="confirmPassword">{t('signup.confirmPasswordLabel')}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
-                placeholder="Passwort wiederholen"
+                placeholder={t('signup.confirmPasswordPlaceholder')}
                 {...register('confirmPassword')}
                 className={errors.confirmPassword ? 'border-red-500' : ''}
               />
@@ -118,11 +119,11 @@ export default function SignupPage() {
               </div>
             )}
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? 'Wird registriert...' : 'Registrieren'}
+              {isSubmitting ? t('signup.submitting') : t('signup.button')}
             </Button>
             <div className="text-center">
               <Link to="/login" className="text-sm text-muted-foreground hover:text-foreground">
-                Bereits ein Konto? Anmelden
+                {t('signup.hasAccount')} {t('signup.loginLink')}
               </Link>
             </div>
           </form>

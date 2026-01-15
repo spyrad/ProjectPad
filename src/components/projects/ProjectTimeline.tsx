@@ -9,12 +9,14 @@ import { useProjectNotes, useCreateNote, useUpdateNote, useDeleteNote } from '@/
 import { Plus, FileText } from 'lucide-react';
 import type { Note } from '@/types/entities';
 import type { NoteFormData } from '@/lib/validations';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectTimelineProps {
   projectId: string;
 }
 
 export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
+  const { t } = useTranslation();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingNote, setEditingNote] = useState<Note | null>(null);
 
@@ -30,10 +32,10 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
         project_id: projectId, // Pre-fill project ID
       });
       setIsCreateDialogOpen(false);
-      toast.success('Notiz erfolgreich erstellt');
+      toast.success(t('notes.toast.created'));
     } catch (error) {
       console.error('Failed to create note:', error);
-      toast.error('Fehler beim Erstellen der Notiz');
+      toast.error(t('notes.toast.createError'));
     }
   };
 
@@ -46,24 +48,24 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
         ...data,
       });
       setEditingNote(null);
-      toast.success('Notiz erfolgreich aktualisiert');
+      toast.success(t('notes.toast.updated'));
     } catch (error) {
       console.error('Failed to update note:', error);
-      toast.error('Fehler beim Aktualisieren der Notiz');
+      toast.error(t('notes.toast.updateError'));
     }
   };
 
   const handleDelete = async (id: string): Promise<void> => {
-    if (!confirm('Möchtest du diese Notiz wirklich löschen?')) {
+    if (!confirm(t('confirmation.deleteNote'))) {
       return;
     }
 
     try {
       await deleteMutation.mutateAsync(id);
-      toast.success('Notiz erfolgreich gelöscht');
+      toast.success(t('notes.toast.deleted'));
     } catch (error) {
       console.error('Failed to delete note:', error);
-      toast.error('Fehler beim Löschen der Notiz');
+      toast.error(t('notes.toast.deleteError'));
     }
   };
 
@@ -72,7 +74,7 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Notizen...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('projects.timeline.loading')}</p>
         </div>
       </div>
     );
@@ -82,7 +84,7 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden der Notizen</p>
+          <p>{t('projects.timeline.error')}</p>
           <p className="text-sm mt-2">{error.message}</p>
         </div>
       </div>
@@ -95,14 +97,14 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Timeline</h2>
+          <h2 className="text-2xl font-bold">{t('projects.timeline.title')}</h2>
           <p className="text-muted-foreground mt-1">
-            Alle Notizen zu diesem Projekt chronologisch sortiert
+            {t('projects.timeline.description')}
           </p>
         </div>
         <Button onClick={() => setIsCreateDialogOpen(true)} className="flex items-center gap-2">
           <Plus className="h-4 w-4" />
-          Neue Notiz
+          {t('notes.page.createButton')}
         </Button>
       </div>
 
@@ -112,13 +114,13 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
           <div className="rounded-full bg-slate-100 p-6 mb-4">
             <FileText className="h-12 w-12 text-slate-600" />
           </div>
-          <h3 className="text-lg font-semibold mb-2">Noch keine Notizen</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('projects.timeline.emptyTitle')}</h3>
           <p className="text-muted-foreground mb-6 max-w-md">
-            Starte mit deiner ersten Notiz und dokumentiere wichtige Gedanken zu diesem Projekt.
+            {t('projects.timeline.emptyDescription')}
           </p>
           <Button onClick={() => setIsCreateDialogOpen(true)} className="flex items-center gap-2">
             <Plus className="h-4 w-4" />
-            Erste Notiz erstellen
+            {t('projects.timeline.firstNoteButton')}
           </Button>
         </div>
       ) : (
@@ -153,9 +155,9 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Neue Notiz erstellen</DialogTitle>
+            <DialogTitle>{t('projects.timeline.createDialogTitle')}</DialogTitle>
             <DialogDescription>
-              Erstelle eine neue Notiz für dieses Projekt
+              {t('projects.timeline.createDialogDescription')}
             </DialogDescription>
           </DialogHeader>
           <NoteForm
@@ -170,9 +172,9 @@ export function ProjectTimeline({ projectId }: ProjectTimelineProps) {
       <Dialog open={!!editingNote} onOpenChange={() => setEditingNote(null)}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Notiz bearbeiten</DialogTitle>
+            <DialogTitle>{t('projects.timeline.editDialogTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite die Notizinformationen
+              {t('projects.timeline.editDialogDescription')}
             </DialogDescription>
           </DialogHeader>
           {editingNote && (

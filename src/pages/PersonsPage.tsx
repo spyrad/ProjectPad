@@ -8,8 +8,10 @@ import { usePersons, useCreatePerson, useUpdatePerson, useDeletePerson } from '@
 import { Plus } from 'lucide-react';
 import type { Person } from '@/types/entities';
 import type { PersonFormData } from '@/lib/validations';
+import { useTranslation } from 'react-i18next';
 
 export default function PersonsPage() {
+  const { t } = useTranslation();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingPerson, setEditingPerson] = useState<Person | null>(null);
 
@@ -22,10 +24,10 @@ export default function PersonsPage() {
     try {
       await createMutation.mutateAsync(data);
       setIsCreateDialogOpen(false);
-      toast.success('Kontakt erfolgreich erstellt');
+      toast.success(t('persons.toast.created'));
     } catch (error) {
       console.error('Failed to create person:', error);
-      toast.error('Fehler beim Erstellen des Kontakts');
+      toast.error(t('persons.toast.createError'));
     }
   };
 
@@ -35,24 +37,24 @@ export default function PersonsPage() {
     try {
       await updateMutation.mutateAsync({ id: editingPerson.id, ...data });
       setEditingPerson(null);
-      toast.success('Kontakt erfolgreich aktualisiert');
+      toast.success(t('persons.toast.updated'));
     } catch (error) {
       console.error('Failed to update person:', error);
-      toast.error('Fehler beim Aktualisieren des Kontakts');
+      toast.error(t('persons.toast.updateError'));
     }
   };
 
   const handleDelete = async (id: string): Promise<void> => {
-    if (!confirm('Möchtest du diesen Kontakt wirklich löschen? Die Person wird von allen Projekten und Notizen entfernt.')) {
+    if (!confirm(t('confirmation.deletePerson'))) {
       return;
     }
 
     try {
       await deleteMutation.mutateAsync(id);
-      toast.success('Kontakt erfolgreich gelöscht');
+      toast.success(t('persons.toast.deleted'));
     } catch (error) {
       console.error('Failed to delete person:', error);
-      toast.error('Fehler beim Löschen des Kontakts');
+      toast.error(t('persons.toast.deleteError'));
     }
   };
 
@@ -61,7 +63,7 @@ export default function PersonsPage() {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Kontakte...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('persons.page.loading')}</p>
         </div>
       </div>
     );
@@ -71,7 +73,7 @@ export default function PersonsPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden der Kontakte</p>
+          <p>{t('persons.page.error')}</p>
           <p className="text-sm mt-2">{error.message}</p>
         </div>
       </div>
@@ -82,14 +84,14 @@ export default function PersonsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Kontakte</h1>
+          <h1 className="text-3xl font-bold">{t('persons.page.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            Verwalte deine Kontakte und Projektbeteiligten
+            {t('persons.page.subtitle')}
           </p>
         </div>
         <Button onClick={() => setIsCreateDialogOpen(true)} className="flex items-center gap-2">
           <Plus className="h-4 w-4" />
-          Neuer Kontakt
+          {t('persons.page.createButton')}
         </Button>
       </div>
 
@@ -103,9 +105,9 @@ export default function PersonsPage() {
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Neuen Kontakt erstellen</DialogTitle>
+            <DialogTitle>{t('persons.form.createTitle')}</DialogTitle>
             <DialogDescription>
-              Erstelle einen neuen Kontakt für deine Projekte
+              {t('persons.form.createDescription')}
             </DialogDescription>
           </DialogHeader>
           <PersonForm
@@ -119,9 +121,9 @@ export default function PersonsPage() {
       <Dialog open={!!editingPerson} onOpenChange={() => setEditingPerson(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Kontakt bearbeiten</DialogTitle>
+            <DialogTitle>{t('persons.form.editTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite die Kontaktinformationen
+              {t('persons.form.editDescription')}
             </DialogDescription>
           </DialogHeader>
           {editingPerson && (

@@ -11,10 +11,12 @@ import { ProjectPersons } from '@/components/projects/ProjectPersons';
 import { useProject, useUpdateProject, useDeleteProject } from '@/hooks/useProjects';
 import { ArrowLeft, Edit, Trash2, Calendar, Target } from 'lucide-react';
 import type { ProjectFormData } from '@/lib/validations';
+import { useTranslation } from 'react-i18next';
 
 type TabValue = 'overview' | 'timeline' | 'persons';
 
 export default function ProjectDetailPage() {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabValue>('timeline');
@@ -30,27 +32,27 @@ export default function ProjectDetailPage() {
     try {
       await updateMutation.mutateAsync({ id: project.id, ...data });
       setIsEditDialogOpen(false);
-      toast.success('Projekt erfolgreich aktualisiert');
+      toast.success(t('projects.toast.updated'));
     } catch (error) {
       console.error('Failed to update project:', error);
-      toast.error('Fehler beim Aktualisieren des Projekts');
+      toast.error(t('projects.toast.updateError'));
     }
   };
 
   const handleDelete = async (): Promise<void> => {
     if (!project) return;
 
-    if (!confirm('Möchtest du dieses Projekt wirklich löschen? Alle zugehörigen Notizen werden ebenfalls gelöscht.')) {
+    if (!confirm(t('confirmation.deleteProject'))) {
       return;
     }
 
     try {
       await deleteMutation.mutateAsync(project.id);
-      toast.success('Projekt erfolgreich gelöscht');
+      toast.success(t('projects.toast.deleted'));
       navigate('/app/projects');
     } catch (error) {
       console.error('Failed to delete project:', error);
-      toast.error('Fehler beim Löschen des Projekts');
+      toast.error(t('projects.toast.deleteError'));
     }
   };
 
@@ -59,7 +61,7 @@ export default function ProjectDetailPage() {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Projekt...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('projects.detail.loading')}</p>
         </div>
       </div>
     );
@@ -69,10 +71,10 @@ export default function ProjectDetailPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden des Projekts</p>
-          <p className="text-sm mt-2">{error?.message || 'Projekt nicht gefunden'}</p>
+          <p>{t('projects.detail.error')}</p>
+          <p className="text-sm mt-2">{error?.message || t('projects.detail.notFound')}</p>
           <Button className="mt-4" onClick={() => navigate('/app/projects')}>
-            Zurück zu Projekten
+            {t('projects.detail.backButton')}
           </Button>
         </div>
       </div>
@@ -80,9 +82,9 @@ export default function ProjectDetailPage() {
   }
 
   const statusLabels: Record<string, string> = {
-    active: 'Aktiv',
-    paused: 'Pausiert',
-    completed: 'Abgeschlossen',
+    active: t('status.active'),
+    paused: t('status.paused'),
+    completed: t('status.completed'),
   };
 
   const statusColors: Record<string, string> = {
@@ -102,7 +104,7 @@ export default function ProjectDetailPage() {
             className="flex items-center gap-2 -ml-2 mb-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zu Projekten
+            {t('projects.detail.backButton')}
           </Button>
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-bold">{project.name}</h1>
@@ -121,7 +123,7 @@ export default function ProjectDetailPage() {
             className="flex items-center gap-2"
           >
             <Edit className="h-4 w-4" />
-            Bearbeiten
+            {t('projects.detail.editButton')}
           </Button>
           <Button
             variant="outline"
@@ -129,7 +131,7 @@ export default function ProjectDetailPage() {
             className="flex items-center gap-2 text-red-600 hover:text-red-700"
           >
             <Trash2 className="h-4 w-4" />
-            Löschen
+            {t('projects.detail.deleteButton')}
           </Button>
         </div>
       </div>
@@ -145,7 +147,7 @@ export default function ProjectDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Übersicht
+            {t('projects.detail.tabOverview')}
           </button>
           <button
             onClick={() => setActiveTab('timeline')}
@@ -155,7 +157,7 @@ export default function ProjectDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Timeline
+            {t('projects.detail.tabTimeline')}
           </button>
           <button
             onClick={() => setActiveTab('persons')}
@@ -165,7 +167,7 @@ export default function ProjectDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Beteiligte
+            {t('projects.detail.tabPersons')}
           </button>
         </div>
       </div>
@@ -178,14 +180,14 @@ export default function ProjectDetailPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5" />
-                Projektziele
+                {t('projects.detail.goalsTitle')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               {project.goals ? (
                 <p className="text-sm whitespace-pre-wrap">{project.goals}</p>
               ) : (
-                <p className="text-sm text-muted-foreground">Keine Ziele definiert</p>
+                <p className="text-sm text-muted-foreground">{t('projects.detail.noGoals')}</p>
               )}
             </CardContent>
           </Card>
@@ -195,7 +197,7 @@ export default function ProjectDetailPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
-                Deadline
+                {t('projects.detail.deadlineTitle')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -208,7 +210,7 @@ export default function ProjectDetailPage() {
                   })}
                 </p>
               ) : (
-                <p className="text-sm text-muted-foreground">Keine Deadline gesetzt</p>
+                <p className="text-sm text-muted-foreground">{t('projects.detail.noDeadline')}</p>
               )}
             </CardContent>
           </Card>
@@ -216,11 +218,11 @@ export default function ProjectDetailPage() {
           {/* Metadata */}
           <Card className="md:col-span-2">
             <CardHeader>
-              <CardTitle>Projekt-Informationen</CardTitle>
+              <CardTitle>{t('projects.detail.metadataTitle')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Erstellt am:</span>
+                <span className="text-muted-foreground">{t('projects.detail.createdAt')}</span>
                 <span>
                   {new Date(project.created_at).toLocaleDateString('de-DE', {
                     day: '2-digit',
@@ -230,7 +232,7 @@ export default function ProjectDetailPage() {
                 </span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Zuletzt aktualisiert:</span>
+                <span className="text-muted-foreground">{t('projects.detail.updatedAt')}</span>
                 <span>
                   {new Date(project.updated_at).toLocaleDateString('de-DE', {
                     day: '2-digit',
@@ -252,9 +254,9 @@ export default function ProjectDetailPage() {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Projekt bearbeiten</DialogTitle>
+            <DialogTitle>{t('projects.form.editTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite die Projektinformationen
+              {t('projects.form.editDescription')}
             </DialogDescription>
           </DialogHeader>
           <ProjectForm

@@ -9,6 +9,7 @@ import { noteSchema, type NoteFormData } from '@/lib/validations';
 import { useProjects } from '@/hooks/useProjects';
 import { usePersons } from '@/hooks/usePersons';
 import type { Note } from '@/types/entities';
+import { useTranslation } from 'react-i18next';
 
 interface NoteFormProps {
   note?: Note;
@@ -18,6 +19,7 @@ interface NoteFormProps {
 }
 
 export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: NoteFormProps) {
+  const { t } = useTranslation();
   const { data: projects = [] } = useProjects();
   const { data: persons = [] } = usePersons();
 
@@ -57,10 +59,10 @@ export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: Not
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="content">Notiz *</Label>
+        <Label htmlFor="content">{t('notes.form.contentLabel')}</Label>
         <Textarea
           id="content"
-          placeholder="Notiz schreiben... (Ctrl+Enter zum Speichern)"
+          placeholder={t('notes.form.contentPlaceholder')}
           {...register('content')}
           onKeyDown={handleKeyDown}
           autoFocus
@@ -73,16 +75,16 @@ export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: Not
 
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="project_id">Projekt (optional)</Label>
+          <Label htmlFor="project_id">{t('notes.form.projectLabel')}</Label>
           <Select
             value={project_id || 'none'}
             onValueChange={(value) => setValue('project_id', value === 'none' ? undefined : value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Kein Projekt zugeordnet" />
+              <SelectValue placeholder={t('notes.form.projectPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="none">Kein Projekt</SelectItem>
+              <SelectItem value="none">{t('notes.form.noProjectOption')}</SelectItem>
               {projects.map((project) => (
                 <SelectItem key={project.id} value={project.id}>
                   {project.name}
@@ -96,16 +98,16 @@ export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: Not
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="person_id">Person (optional)</Label>
+          <Label htmlFor="person_id">{t('notes.form.personLabel')}</Label>
           <Select
             value={person_id || 'none'}
             onValueChange={(value) => setValue('person_id', value === 'none' ? undefined : value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Keine Person zugeordnet" />
+              <SelectValue placeholder={t('notes.form.personPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="none">Keine Person</SelectItem>
+              <SelectItem value="none">{t('notes.form.noPersonOption')}</SelectItem>
               {persons.map((person) => (
                 <SelectItem key={person.id} value={person.id}>
                   {person.name}
@@ -121,7 +123,7 @@ export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: Not
 
       <div className="flex justify-end gap-2 pt-4">
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Wird gespeichert...' : note ? 'Änderungen speichern' : 'Notiz erstellen'}
+          {isSubmitting ? t('notes.form.submitting') : note ? t('notes.form.submitEdit') : t('notes.form.submitCreate')}
         </Button>
       </div>
     </form>

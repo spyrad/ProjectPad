@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { personSchema, type PersonFormData } from '@/lib/validations';
 import type { Person } from '@/types/entities';
+import { useTranslation } from 'react-i18next';
 
 interface PersonFormProps {
   person?: Person;
@@ -15,6 +16,7 @@ interface PersonFormProps {
 }
 
 export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -44,10 +46,10 @@ export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="name">Name *</Label>
+        <Label htmlFor="name">{t('persons.form.nameLabel')}</Label>
         <Input
           id="name"
-          placeholder="Max Mustermann"
+          placeholder={t('persons.form.namePlaceholder')}
           {...register('name')}
           className={errors.name ? 'border-red-500' : ''}
         />
@@ -57,10 +59,10 @@ export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) 
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="role">Rolle</Label>
+        <Label htmlFor="role">{t('persons.form.roleLabel')}</Label>
         <Input
           id="role"
-          placeholder="z.B. Projektmanager, Entwickler, Designer..."
+          placeholder={t('persons.form.rolePlaceholder')}
           {...register('role')}
           className={errors.role ? 'border-red-500' : ''}
         />
@@ -70,10 +72,10 @@ export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) 
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Beschreibung</Label>
+        <Label htmlFor="description">{t('persons.form.descriptionLabel')}</Label>
         <Textarea
           id="description"
-          placeholder="Kurze Beschreibung der Person..."
+          placeholder={t('persons.form.descriptionPlaceholder')}
           rows={3}
           {...register('description')}
           className={errors.description ? 'border-red-500' : ''}
@@ -84,10 +86,10 @@ export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) 
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="expertise">Expertise</Label>
+        <Label htmlFor="expertise">{t('persons.form.expertiseLabel')}</Label>
         <Textarea
           id="expertise"
-          placeholder="Fachkenntnisse und Kompetenzen..."
+          placeholder={t('persons.form.expertisePlaceholder')}
           rows={3}
           {...register('expertise')}
           className={errors.expertise ? 'border-red-500' : ''}
@@ -98,10 +100,10 @@ export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) 
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="contact">Kontaktinformationen</Label>
+        <Label htmlFor="contact">{t('persons.form.contactLabel')}</Label>
         <Input
           id="contact"
-          placeholder="E-Mail, Telefon, etc."
+          placeholder={t('persons.form.contactPlaceholder')}
           {...register('contact')}
           className={errors.contact ? 'border-red-500' : ''}
         />
@@ -112,7 +114,7 @@ export function PersonForm({ person, onSubmit, isSubmitting }: PersonFormProps) 
 
       <div className="flex justify-end gap-2 pt-4">
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Wird gespeichert...' : person ? 'Änderungen speichern' : 'Person erstellen'}
+          {isSubmitting ? t('persons.form.submitting') : person ? t('persons.form.submitEdit') : t('persons.form.submitCreate')}
         </Button>
       </div>
     </form>

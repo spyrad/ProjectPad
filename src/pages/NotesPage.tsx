@@ -8,8 +8,10 @@ import { useNotes, useCreateNote, useUpdateNote, useDeleteNote } from '@/hooks/u
 import { Plus } from 'lucide-react';
 import type { Note } from '@/types/entities';
 import type { NoteFormData } from '@/lib/validations';
+import { useTranslation } from 'react-i18next';
 
 export default function NotesPage() {
+  const { t } = useTranslation();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingNote, setEditingNote] = useState<Note | null>(null);
 
@@ -22,10 +24,10 @@ export default function NotesPage() {
     try {
       await createMutation.mutateAsync(data);
       setIsCreateDialogOpen(false);
-      toast.success('Notiz erfolgreich erstellt');
+      toast.success(t('notes.toast.created'));
     } catch (error) {
       console.error('Failed to create note:', error);
-      toast.error('Fehler beim Erstellen der Notiz');
+      toast.error(t('notes.toast.createError'));
     }
   };
 
@@ -35,24 +37,24 @@ export default function NotesPage() {
     try {
       await updateMutation.mutateAsync({ id: editingNote.id, ...data });
       setEditingNote(null);
-      toast.success('Notiz erfolgreich aktualisiert');
+      toast.success(t('notes.toast.updated'));
     } catch (error) {
       console.error('Failed to update note:', error);
-      toast.error('Fehler beim Aktualisieren der Notiz');
+      toast.error(t('notes.toast.updateError'));
     }
   };
 
   const handleDelete = async (id: string): Promise<void> => {
-    if (!confirm('Möchtest du diese Notiz wirklich löschen?')) {
+    if (!confirm(t('confirmation.deleteNote'))) {
       return;
     }
 
     try {
       await deleteMutation.mutateAsync(id);
-      toast.success('Notiz erfolgreich gelöscht');
+      toast.success(t('notes.toast.deleted'));
     } catch (error) {
       console.error('Failed to delete note:', error);
-      toast.error('Fehler beim Löschen der Notiz');
+      toast.error(t('notes.toast.deleteError'));
     }
   };
 
@@ -61,7 +63,7 @@ export default function NotesPage() {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Notizen...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('notes.page.loading')}</p>
         </div>
       </div>
     );
@@ -71,7 +73,7 @@ export default function NotesPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden der Notizen</p>
+          <p>{t('notes.page.error')}</p>
           <p className="text-sm mt-2">{error.message}</p>
         </div>
       </div>
@@ -82,14 +84,14 @@ export default function NotesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Notizen</h1>
+          <h1 className="text-3xl font-bold">{t('notes.page.title')}</h1>
           <p className="text-muted-foreground mt-2">
-            Erfasse deine Gedanken und Ideen
+            {t('notes.page.subtitle')}
           </p>
         </div>
         <Button onClick={() => setIsCreateDialogOpen(true)} className="flex items-center gap-2">
           <Plus className="h-4 w-4" />
-          Neue Notiz
+          {t('notes.page.createButton')}
         </Button>
       </div>
 
@@ -103,9 +105,9 @@ export default function NotesPage() {
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Neue Notiz erstellen</DialogTitle>
+            <DialogTitle>{t('notes.form.createTitle')}</DialogTitle>
             <DialogDescription>
-              Erfasse eine neue Notiz mit optionaler Projektzuordnung
+              {t('notes.form.createDescription')}
             </DialogDescription>
           </DialogHeader>
           <NoteForm
@@ -119,9 +121,9 @@ export default function NotesPage() {
       <Dialog open={!!editingNote} onOpenChange={() => setEditingNote(null)}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Notiz bearbeiten</DialogTitle>
+            <DialogTitle>{t('notes.form.editTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite den Inhalt deiner Notiz
+              {t('notes.form.editDescription')}
             </DialogDescription>
           </DialogHeader>
           {editingNote && (

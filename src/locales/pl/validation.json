@@ -1,0 +1,22 @@
+{
+  "email": {
+    "invalid": "Nieprawidłowy adres e-mail"
+  },
+  "password": {
+    "min": "Hasło musi mieć co najmniej 8 znaków",
+    "required": "Hasło jest wymagane",
+    "mismatch": "Hasła nie pasują do siebie"
+  },
+  "field": {
+    "required": "To pole jest wymagane",
+    "nameRequired": "Nazwa jest wymagana",
+    "contentRequired": "Treść jest wymagana",
+    "tooLong": "Wpis za długi",
+    "nameTooLong": "Nazwa za długa (maks. 100 znaków)",
+    "descriptionTooLong": "Opis za długi (maks. 500 znaków)",
+    "goalsTooLong": "Cele za długie (maks. 1000 znaków)",
+    "roleTooLong": "Rola za długa (maks. 100 znaków)",
+    "expertiseTooLong": "Ekspertyza za długa (maks. 500 znaków)",
+    "contactTooLong": "Informacje kontaktowe za długie (maks. 200 znaków)"
+  }
+}

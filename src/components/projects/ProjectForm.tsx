@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { projectSchema, type ProjectFormData } from '@/lib/validations';
 import type { Project } from '@/types/entities';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectFormProps {
   project?: Project;
@@ -16,6 +17,7 @@ interface ProjectFormProps {
 }
 
 export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProps) {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -48,10 +50,10 @@ export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProp
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="name">Projektname *</Label>
+        <Label htmlFor="name">{t('projects.form.nameLabel')}</Label>
         <Input
           id="name"
-          placeholder="Mein Projekt"
+          placeholder={t('projects.form.namePlaceholder')}
           {...register('name')}
           className={errors.name ? 'border-red-500' : ''}
         />
@@ -61,10 +63,10 @@ export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProp
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Beschreibung</Label>
+        <Label htmlFor="description">{t('projects.form.descriptionLabel')}</Label>
         <Textarea
           id="description"
-          placeholder="Kurze Projektbeschreibung..."
+          placeholder={t('projects.form.descriptionPlaceholder')}
           rows={3}
           {...register('description')}
           className={errors.description ? 'border-red-500' : ''}
@@ -75,18 +77,18 @@ export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProp
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="status">Status *</Label>
+        <Label htmlFor="status">{t('projects.form.statusLabel')}</Label>
         <Select
           value={status}
           onValueChange={(value) => setValue('status', value as Project['status'])}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Status auswählen" />
+            <SelectValue placeholder={t('projects.form.statusPlaceholder')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="active">Aktiv</SelectItem>
-            <SelectItem value="paused">Pausiert</SelectItem>
-            <SelectItem value="completed">Abgeschlossen</SelectItem>
+            <SelectItem value="active">{t('status.active')}</SelectItem>
+            <SelectItem value="paused">{t('status.paused')}</SelectItem>
+            <SelectItem value="completed">{t('status.completed')}</SelectItem>
           </SelectContent>
         </Select>
         {errors.status && (
@@ -95,10 +97,10 @@ export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProp
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="goals">Ziele</Label>
+        <Label htmlFor="goals">{t('projects.form.goalsLabel')}</Label>
         <Textarea
           id="goals"
-          placeholder="Projektziele..."
+          placeholder={t('projects.form.goalsPlaceholder')}
           rows={3}
           {...register('goals')}
           className={errors.goals ? 'border-red-500' : ''}
@@ -109,7 +111,7 @@ export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProp
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="deadline">Deadline</Label>
+        <Label htmlFor="deadline">{t('projects.form.deadlineLabel')}</Label>
         <Input
           id="deadline"
           type="date"
@@ -123,7 +125,7 @@ export function ProjectForm({ project, onSubmit, isSubmitting }: ProjectFormProp
 
       <div className="flex justify-end gap-2 pt-4">
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Wird gespeichert...' : project ? 'Änderungen speichern' : 'Projekt erstellen'}
+          {isSubmitting ? t('projects.form.submitting') : project ? t('projects.form.submitEdit') : t('projects.form.submitCreate')}
         </Button>
       </div>
     </form>

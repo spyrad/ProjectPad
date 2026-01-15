@@ -1,0 +1,99 @@
+{
+  "page": {
+    "title": "Projekte",
+    "subtitle": "Verwalte deine Projekte und behalte den Überblick",
+    "loading": "Lade Projekte...",
+    "error": "Fehler beim Laden der Projekte",
+    "createButton": "Neues Projekt"
+  },
+  "form": {
+    "createTitle": "Neues Projekt erstellen",
+    "createDescription": "Erstelle ein neues Projekt für deine Notizen und Aufgaben",
+    "editTitle": "Projekt bearbeiten",
+    "editDescription": "Bearbeite die Projektinformationen",
+    "nameLabel": "Projektname *",
+    "namePlaceholder": "Mein Projekt",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Kurze Projektbeschreibung...",
+    "statusLabel": "Status *",
+    "statusPlaceholder": "Status auswählen",
+    "goalsLabel": "Ziele",
+    "goalsPlaceholder": "Projektziele...",
+    "deadlineLabel": "Deadline",
+    "submitCreate": "Projekt erstellen",
+    "submitEdit": "Änderungen speichern",
+    "submitting": "Wird gespeichert..."
+  },
+  "detail": {
+    "loading": "Lade Projekt...",
+    "error": "Fehler beim Laden des Projekts",
+    "notFound": "Projekt nicht gefunden",
+    "backButton": "Zurück zu Projekten",
+    "tabOverview": "Übersicht",
+    "tabTimeline": "Timeline",
+    "tabPersons": "Beteiligte",
+    "editButton": "Bearbeiten",
+    "deleteButton": "Löschen",
+    "goalsTitle": "Projektziele",
+    "noGoals": "Keine Ziele definiert",
+    "deadlineTitle": "Deadline",
+    "noDeadline": "Keine Deadline gesetzt",
+    "metadataTitle": "Projekt-Informationen",
+    "createdAt": "Erstellt am:",
+    "updatedAt": "Zuletzt aktualisiert:"
+  },
+  "list": {
+    "emptyTitle": "Noch keine Projekte",
+    "emptyDescription": "Starte dein erstes Projekt und halte alle wichtigen Informationen an einem Ort fest."
+  },
+  "card": {
+    "goalsLabel": "Ziele:",
+    "deadlineLabel": "Deadline:",
+    "viewButton": "Anzeigen",
+    "editButton": "Bearbeiten",
+    "deleteButton": "Löschen"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "description": "Alle Notizen zu diesem Projekt chronologisch sortiert",
+    "loading": "Lade Notizen...",
+    "error": "Fehler beim Laden der Notizen",
+    "emptyTitle": "Noch keine Notizen",
+    "emptyDescription": "Starte mit deiner ersten Notiz und dokumentiere wichtige Gedanken zu diesem Projekt.",
+    "firstNoteButton": "Erste Notiz erstellen",
+    "createDialogTitle": "Neue Notiz erstellen",
+    "createDialogDescription": "Erstelle eine neue Notiz für dieses Projekt",
+    "editDialogTitle": "Notiz bearbeiten",
+    "editDialogDescription": "Bearbeite die Notizinformationen"
+  },
+  "persons": {
+    "title": "Beteiligte",
+    "description": "Personen, die an diesem Projekt beteiligt sind",
+    "addButton": "Person hinzufügen",
+    "loading": "Lade Beteiligte...",
+    "error": "Fehler beim Laden der Beteiligten",
+    "emptyTitle": "Keine Beteiligten",
+    "emptyDescription": "Füge Personen hinzu, um sie diesem Projekt zuzuordnen",
+    "firstPersonButton": "Erste Person hinzufügen",
+    "removeConfirm": "Möchtest du diese Person wirklich vom Projekt entfernen?",
+    "addDialogTitle": "Person zum Projekt hinzufügen",
+    "addDialogDescription": "Wähle eine Person aus und definiere optional ihre Rolle im Projekt",
+    "personLabel": "Person *",
+    "personPlaceholder": "Person auswählen",
+    "noPersons": "Keine Personen verfügbar",
+    "roleLabel": "Rolle im Projekt (optional)",
+    "rolePlaceholder": "z.B. Lead Developer, Designer, ...",
+    "cancelButton": "Abbrechen",
+    "adding": "Wird hinzugefügt...",
+    "addButtonSubmit": "Hinzufügen",
+    "roleCardLabel": "Rolle:"
+  },
+  "toast": {
+    "created": "Projekt erfolgreich erstellt",
+    "updated": "Projekt erfolgreich aktualisiert",
+    "deleted": "Projekt erfolgreich gelöscht",
+    "createError": "Fehler beim Erstellen des Projekts",
+    "updateError": "Fehler beim Aktualisieren des Projekts",
+    "deleteError": "Fehler beim Löschen des Projekts"
+  }
+}

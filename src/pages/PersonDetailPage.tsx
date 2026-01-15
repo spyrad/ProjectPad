@@ -16,10 +16,12 @@ import { ArrowLeft, Edit, Trash2, User, Briefcase, Lightbulb, Mail, FolderOpen, 
 import type { PersonFormData } from '@/lib/validations';
 import type { Note } from '@/types/entities';
 import type { NoteFormData } from '@/lib/validations';
+import { useTranslation } from 'react-i18next';
 
 type TabValue = 'overview' | 'projects' | 'notes';
 
 export default function PersonDetailPage() {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabValue>('overview');
@@ -42,27 +44,27 @@ export default function PersonDetailPage() {
     try {
       await updateMutation.mutateAsync({ id: person.id, ...data });
       setIsEditDialogOpen(false);
-      toast.success('Kontakt erfolgreich aktualisiert');
+      toast.success(t('persons.toast.updated'));
     } catch (error) {
       console.error('Failed to update person:', error);
-      toast.error('Fehler beim Aktualisieren des Kontakts');
+      toast.error(t('persons.toast.updateError'));
     }
   };
 
   const handleDelete = async (): Promise<void> => {
     if (!person) return;
 
-    if (!confirm('Möchtest du diese Person wirklich löschen? Die Person wird von allen Projekten entfernt.')) {
+    if (!confirm(t('confirmation.deletePerson'))) {
       return;
     }
 
     try {
       await deleteMutation.mutateAsync(person.id);
-      toast.success('Kontakt erfolgreich gelöscht');
+      toast.success(t('persons.toast.deleted'));
       navigate('/app/persons');
     } catch (error) {
       console.error('Failed to delete person:', error);
-      toast.error('Fehler beim Löschen des Kontakts');
+      toast.error(t('persons.toast.deleteError'));
     }
   };
 
@@ -73,10 +75,10 @@ export default function PersonDetailPage() {
         person_id: id!, // Pre-fill person ID
       });
       setIsCreateNoteOpen(false);
-      toast.success('Notiz erfolgreich erstellt');
+      toast.success(t('notes.toast.created'));
     } catch (error) {
       console.error('Failed to create note:', error);
-      toast.error('Fehler beim Erstellen der Notiz');
+      toast.error(t('notes.toast.createError'));
     }
   };
 
@@ -89,24 +91,24 @@ export default function PersonDetailPage() {
         ...data,
       });
       setEditingNote(null);
-      toast.success('Notiz erfolgreich aktualisiert');
+      toast.success(t('notes.toast.updated'));
     } catch (error) {
       console.error('Failed to update note:', error);
-      toast.error('Fehler beim Aktualisieren der Notiz');
+      toast.error(t('notes.toast.updateError'));
     }
   };
 
   const handleDeleteNote = async (noteId: string): Promise<void> => {
-    if (!confirm('Möchtest du diese Notiz wirklich löschen?')) {
+    if (!confirm(t('confirmation.deleteNote'))) {
       return;
     }
 
     try {
       await deleteNoteMutation.mutateAsync(noteId);
-      toast.success('Notiz erfolgreich gelöscht');
+      toast.success(t('notes.toast.deleted'));
     } catch (error) {
       console.error('Failed to delete note:', error);
-      toast.error('Fehler beim Löschen der Notiz');
+      toast.error(t('notes.toast.deleteError'));
     }
   };
 
@@ -115,7 +117,7 @@ export default function PersonDetailPage() {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-          <p className="mt-4 text-sm text-muted-foreground">Lade Person...</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('persons.detail.loading')}</p>
         </div>
       </div>
     );
@@ -125,10 +127,10 @@ export default function PersonDetailPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center text-red-500">
-          <p>Fehler beim Laden der Person</p>
-          <p className="text-sm mt-2">{error?.message || 'Person nicht gefunden'}</p>
+          <p>{t('persons.detail.error')}</p>
+          <p className="text-sm mt-2">{error?.message || t('persons.detail.notFound')}</p>
           <Button className="mt-4" onClick={() => navigate('/app/persons')}>
-            Zurück zu Kontakten
+            {t('persons.detail.backButton')}
           </Button>
         </div>
       </div>
@@ -148,7 +150,7 @@ export default function PersonDetailPage() {
             className="flex items-center gap-2 -ml-2 mb-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zu Kontakten
+            {t('persons.detail.backButton')}
           </Button>
           <h1 className="text-3xl font-bold">{person.name}</h1>
           {person.role && (
@@ -165,7 +167,7 @@ export default function PersonDetailPage() {
             className="flex items-center gap-2"
           >
             <Edit className="h-4 w-4" />
-            Bearbeiten
+            {t('persons.detail.editButton')}
           </Button>
           <Button
             variant="outline"
@@ -173,7 +175,7 @@ export default function PersonDetailPage() {
             className="flex items-center gap-2 text-red-600 hover:text-red-700"
           >
             <Trash2 className="h-4 w-4" />
-            Löschen
+            {t('persons.detail.deleteButton')}
           </Button>
         </div>
       </div>
@@ -189,7 +191,7 @@ export default function PersonDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Übersicht
+            {t('persons.detail.tabOverview')}
           </button>
           <button
             onClick={() => setActiveTab('projects')}
@@ -199,7 +201,7 @@ export default function PersonDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Projekte ({personProjects.length})
+            {t('persons.detail.tabProjects')} ({personProjects.length})
           </button>
           <button
             onClick={() => setActiveTab('notes')}
@@ -209,7 +211,7 @@ export default function PersonDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Notizen ({personNotes.length})
+            {t('persons.detail.tabNotes')} ({personNotes.length})
           </button>
         </div>
       </div>
@@ -222,13 +224,13 @@ export default function PersonDetailPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <User className="h-5 w-5" />
-                Informationen
+                {t('persons.detail.infoTitle')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {person.description && (
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Beschreibung:</p>
+                  <p className="text-sm font-medium text-muted-foreground">{t('persons.detail.descriptionLabel')}</p>
                   <p className="text-sm mt-1">{person.description}</p>
                 </div>
               )}
@@ -236,7 +238,7 @@ export default function PersonDetailPage() {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Lightbulb className="h-4 w-4" />
-                    Expertise:
+                    {t('persons.detail.expertiseLabel')}
                   </p>
                   <p className="text-sm mt-1">{person.expertise}</p>
                 </div>
@@ -245,7 +247,7 @@ export default function PersonDetailPage() {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Mail className="h-4 w-4" />
-                    Kontakt:
+                    {t('persons.detail.contactLabel')}
                   </p>
                   <p className="text-sm mt-1">{person.contact}</p>
                 </div>
@@ -256,20 +258,20 @@ export default function PersonDetailPage() {
           {/* Stats */}
           <Card>
             <CardHeader>
-              <CardTitle>Statistiken</CardTitle>
+              <CardTitle>{t('persons.detail.statsTitle')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground flex items-center gap-2">
                   <FolderOpen className="h-4 w-4" />
-                  Projekte:
+                  {t('persons.detail.projectsLabel')}
                 </span>
                 <span className="font-semibold">{personProjects.length}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground flex items-center gap-2">
                   <FileText className="h-4 w-4" />
-                  Notizen:
+                  {t('persons.detail.notesLabel')}
                 </span>
                 <span className="font-semibold">{personNotes.length}</span>
               </div>
@@ -281,15 +283,15 @@ export default function PersonDetailPage() {
       {activeTab === 'projects' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Projekte</h2>
+            <h2 className="text-2xl font-bold">{t('persons.detail.projectsTitle')}</h2>
           </div>
 
           {personProjects.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <FolderOpen className="h-16 w-16 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Keine Projekte</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('persons.detail.noProjects')}</h3>
               <p className="text-muted-foreground">
-                Diese Person ist noch keinem Projekt zugeordnet
+                {t('persons.detail.noProjectsDesc')}
               </p>
             </div>
           ) : (
@@ -301,7 +303,7 @@ export default function PersonDetailPage() {
                     <h3 className="font-semibold">{pp.project.name}</h3>
                     {pp.project_role && (
                       <p className="text-sm text-muted-foreground mt-1">
-                        Rolle: {pp.project_role}
+                        {t('persons.detail.roleLabel')} {pp.project_role}
                       </p>
                     )}
                     {pp.project.description && (
@@ -321,27 +323,27 @@ export default function PersonDetailPage() {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold">Notizen</h2>
+              <h2 className="text-2xl font-bold">{t('persons.detail.notesTitle')}</h2>
               <p className="text-muted-foreground mt-1">
-                Alle Notizen zu dieser Person
+                {t('persons.detail.notesDescription')}
               </p>
             </div>
             <Button onClick={() => setIsCreateNoteOpen(true)} className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Neue Notiz
+              {t('persons.detail.newNote')}
             </Button>
           </div>
 
           {groupedNotes.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <FileText className="h-16 w-16 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Keine Notizen</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('persons.detail.noNotes')}</h3>
               <p className="text-muted-foreground mb-4">
-                Erstelle die erste Notiz für diese Person
+                {t('persons.detail.noNotesDesc')}
               </p>
               <Button onClick={() => setIsCreateNoteOpen(true)} className="flex items-center gap-2">
                 <Plus className="h-4 w-4" />
-                Erste Notiz erstellen
+                {t('persons.detail.firstNoteButton')}
               </Button>
             </div>
           ) : (
@@ -375,9 +377,9 @@ export default function PersonDetailPage() {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Person bearbeiten</DialogTitle>
+            <DialogTitle>{t('persons.form.editTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite die Informationen dieser Person
+              {t('persons.form.editDescription')}
             </DialogDescription>
           </DialogHeader>
           <PersonForm
@@ -392,9 +394,9 @@ export default function PersonDetailPage() {
       <Dialog open={isCreateNoteOpen} onOpenChange={setIsCreateNoteOpen}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Neue Notiz erstellen</DialogTitle>
+            <DialogTitle>{t('notes.form.createTitle')}</DialogTitle>
             <DialogDescription>
-              Erstelle eine neue Notiz für {person.name}
+              {t('notes.form.createDescriptionFor', { name: person.name })}
             </DialogDescription>
           </DialogHeader>
           <NoteForm
@@ -408,9 +410,9 @@ export default function PersonDetailPage() {
       <Dialog open={!!editingNote} onOpenChange={() => setEditingNote(null)}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Notiz bearbeiten</DialogTitle>
+            <DialogTitle>{t('notes.form.editTitle')}</DialogTitle>
             <DialogDescription>
-              Bearbeite die Notizinformationen
+              {t('notes.form.editDescription')}
             </DialogDescription>
           </DialogHeader>
           {editingNote && (

@@ -1,0 +1,347 @@
+{
+  "common": {
+    "appName": "ProjectPad",
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "create": "Utwórz",
+    "back": "Wstecz",
+    "close": "Zamknij",
+    "confirm": "Potwierdź",
+    "search": "Szukaj",
+    "saving": "Zapisywanie...",
+    "viewAll": "Pokaż wszystkie"
+  },
+  "navigation": {
+    "projects": "Projekty",
+    "persons": "Kontakty",
+    "notes": "Notatki",
+    "dashboard": "Panel",
+    "logout": "Wyloguj"
+  },
+  "status": {
+    "active": "Aktywny",
+    "paused": "Wstrzymany",
+    "completed": "Zakończony"
+  },
+  "empty": {
+    "noProjects": "Brak projektów",
+    "noPersons": "Brak kontaktów",
+    "noNotes": "Brak notatek",
+    "createFirst": "Utwórz swój pierwszy {{item}}"
+  },
+  "confirmation": {
+    "deleteProject": "Czy na pewno chcesz usunąć ten projekt? Wszystkie powiązane notatki również zostaną usunięte.",
+    "deletePerson": "Czy na pewno chcesz usunąć ten kontakt? Osoba zostanie usunięta ze wszystkich projektów i notatek.",
+    "deleteNote": "Czy na pewno chcesz usunąć tę notatkę?",
+    "removePersonFromProject": "Czy na pewno chcesz usunąć tę osobę z projektu?"
+  },
+  "datetime": {
+    "at": "o",
+    "today": "Dziś",
+    "yesterday": "Wczoraj"
+  },
+  "landing": {
+    "tagline": "Twój osobisty asystent projektów z klimatem notatnika",
+    "ctaStart": "Rozpocznij za darmo",
+    "ctaLogin": "Zaloguj się",
+    "feature1Title": "Zarządzaj projektami",
+    "feature1Desc": "Organizuj swoje projekty ze statusami, celami i terminami",
+    "feature2Title": "Przypisuj kontakty",
+    "feature2Desc": "Łącz osoby z projektami i notatkami",
+    "feature3Title": "Szybkie notatki",
+    "feature3Desc": "Klimat notatnika dla błyskawicznych myśli i pomysłów",
+    "feature4Title": "Widok osi czasu",
+    "feature4Desc": "Zachowaj przegląd dzięki chronologicznemu przebiegowi projektu",
+    "footerText": "Szybko, prosto, skoncentrowanie – dla Twoich projektów i notatek"
+  },
+  "dashboard": {
+    "welcomeBack": "Witaj ponownie!",
+    "loggedInAs": "Zalogowano jako {{email}}",
+    "overview": "Przegląd",
+    "statsActive": "Aktywne",
+    "statsCompleted": "Zakończone",
+    "statsPaused": "Wstrzymane",
+    "statsProjects": "Projekty",
+    "statsNotes": "Notatki",
+    "statsPersons": "Kontakty",
+    "statsTotal": "Razem",
+    "recentNotes": "Ostatnie notatki",
+    "viewAll": "Pokaż wszystkie",
+    "loadingNotes": "Ładowanie notatek...",
+    "noNotes": "Brak notatek.",
+    "quickAccess": "Szybki dostęp",
+    "manageProjects": "Zarządzaj projektami",
+    "managePersons": "Zarządzaj kontaktami",
+    "captureNotes": "Twórz notatki"
+  },
+  "projects": {
+    "page": {
+      "title": "Projekty",
+      "subtitle": "Zarządzaj swoimi projektami i zachowaj porządek",
+      "loading": "Ładowanie projektów...",
+      "error": "Błąd podczas ładowania projektów",
+      "createButton": "Nowy projekt"
+    },
+    "form": {
+      "createTitle": "Utwórz nowy projekt",
+      "createDescription": "Utwórz nowy projekt dla swoich notatek i zadań",
+      "editTitle": "Edytuj projekt",
+      "editDescription": "Edytuj informacje o projekcie",
+      "nameLabel": "Nazwa projektu *",
+      "namePlaceholder": "Mój projekt",
+      "descriptionLabel": "Opis",
+      "descriptionPlaceholder": "Krótki opis projektu...",
+      "statusLabel": "Status *",
+      "statusPlaceholder": "Wybierz status",
+      "goalsLabel": "Cele",
+      "goalsPlaceholder": "Cele projektu...",
+      "deadlineLabel": "Termin",
+      "submitCreate": "Utwórz projekt",
+      "submitEdit": "Zapisz zmiany",
+      "submitting": "Zapisywanie..."
+    },
+    "detail": {
+      "loading": "Ładowanie projektu...",
+      "error": "Błąd podczas ładowania projektu",
+      "notFound": "Projekt nie znaleziony",
+      "backButton": "Wróć do projektów",
+      "tabOverview": "Przegląd",
+      "tabTimeline": "Oś czasu",
+      "tabPersons": "Uczestnicy",
+      "editButton": "Edytuj",
+      "deleteButton": "Usuń",
+      "goalsTitle": "Cele projektu",
+      "noGoals": "Brak zdefiniowanych celów",
+      "deadlineTitle": "Termin",
+      "noDeadline": "Brak terminu",
+      "metadataTitle": "Informacje o projekcie",
+      "createdAt": "Utworzono:",
+      "updatedAt": "Ostatnia aktualizacja:"
+    },
+    "list": {
+      "emptyTitle": "Brak projektów",
+      "emptyDescription": "Rozpocznij swój pierwszy projekt i przechowuj wszystkie ważne informacje w jednym miejscu."
+    },
+    "card": {
+      "goalsLabel": "Cele:",
+      "deadlineLabel": "Termin:",
+      "viewButton": "Pokaż",
+      "editButton": "Edytuj",
+      "deleteButton": "Usuń"
+    },
+    "timeline": {
+      "title": "Oś czasu",
+      "description": "Wszystkie notatki do tego projektu w kolejności chronologicznej",
+      "loading": "Ładowanie notatek...",
+      "error": "Błąd podczas ładowania notatek",
+      "emptyTitle": "Brak notatek",
+      "emptyDescription": "Rozpocznij od pierwszej notatki i dokumentuj ważne myśli związane z tym projektem.",
+      "firstNoteButton": "Utwórz pierwszą notatkę",
+      "createDialogTitle": "Utwórz nową notatkę",
+      "createDialogDescription": "Utwórz nową notatkę dla tego projektu",
+      "editDialogTitle": "Edytuj notatkę",
+      "editDialogDescription": "Edytuj informacje o notatce"
+    },
+    "persons": {
+      "title": "Uczestnicy",
+      "description": "Osoby zaangażowane w ten projekt",
+      "addButton": "Dodaj osobę",
+      "loading": "Ładowanie uczestników...",
+      "error": "Błąd podczas ładowania uczestników",
+      "emptyTitle": "Brak uczestników",
+      "emptyDescription": "Dodaj osoby, aby przypisać je do tego projektu",
+      "firstPersonButton": "Dodaj pierwszą osobę",
+      "removeConfirm": "Czy na pewno chcesz usunąć tę osobę z projektu?",
+      "addDialogTitle": "Dodaj osobę do projektu",
+      "addDialogDescription": "Wybierz osobę i opcjonalnie zdefiniuj jej rolę w projekcie",
+      "personLabel": "Osoba *",
+      "personPlaceholder": "Wybierz osobę",
+      "noPersons": "Brak dostępnych osób",
+      "roleLabel": "Rola w projekcie (opcjonalnie)",
+      "rolePlaceholder": "np. Lead Developer, Designer, ...",
+      "cancelButton": "Anuluj",
+      "adding": "Dodawanie...",
+      "addButtonSubmit": "Dodaj",
+      "roleCardLabel": "Rola:"
+    },
+    "toast": {
+      "created": "Projekt utworzony pomyślnie",
+      "updated": "Projekt zaktualizowany pomyślnie",
+      "deleted": "Projekt usunięty pomyślnie",
+      "createError": "Błąd podczas tworzenia projektu",
+      "updateError": "Błąd podczas aktualizacji projektu",
+      "deleteError": "Błąd podczas usuwania projektu"
+    }
+  },
+  "persons": {
+    "page": {
+      "title": "Kontakty",
+      "subtitle": "Zarządzaj swoimi kontaktami i uczestnikami projektów",
+      "loading": "Ładowanie kontaktów...",
+      "error": "Błąd podczas ładowania kontaktów",
+      "createButton": "Nowy kontakt"
+    },
+    "form": {
+      "createTitle": "Utwórz nowy kontakt",
+      "createDescription": "Utwórz nowy kontakt dla swoich projektów",
+      "editTitle": "Edytuj kontakt",
+      "editDescription": "Edytuj informacje o kontakcie",
+      "nameLabel": "Imię i nazwisko *",
+      "namePlaceholder": "Jan Kowalski",
+      "roleLabel": "Rola",
+      "rolePlaceholder": "np. Kierownik projektu, Programista, Designer...",
+      "descriptionLabel": "Opis",
+      "descriptionPlaceholder": "Krótki opis osoby...",
+      "expertiseLabel": "Ekspertyza",
+      "expertisePlaceholder": "Wiedza specjalistyczna i kompetencje...",
+      "contactLabel": "Informacje kontaktowe",
+      "contactPlaceholder": "E-mail, telefon, itp.",
+      "submitCreate": "Utwórz osobę",
+      "submitEdit": "Zapisz zmiany",
+      "submitting": "Zapisywanie..."
+    },
+    "detail": {
+      "loading": "Ładowanie osoby...",
+      "error": "Błąd podczas ładowania osoby",
+      "notFound": "Osoba nie znaleziona",
+      "backButton": "Wróć do kontaktów",
+      "tabOverview": "Przegląd",
+      "tabProjects": "Projekty ({{count}})",
+      "tabNotes": "Notatki ({{count}})",
+      "editButton": "Edytuj",
+      "deleteButton": "Usuń",
+      "infoTitle": "Informacje",
+      "descriptionLabel": "Opis:",
+      "expertiseLabel": "Ekspertyza:",
+      "contactLabel": "Kontakt:",
+      "statsTitle": "Statystyki",
+      "projectsLabel": "Projekty:",
+      "notesLabel": "Notatki:",
+      "noProjects": "Brak projektów",
+      "noProjectsDesc": "Ta osoba nie jest jeszcze przypisana do żadnego projektu",
+      "projectsTitle": "Projekty",
+      "roleLabel": "Rola:",
+      "noNotes": "Brak notatek",
+      "noNotesDesc": "Utwórz pierwszą notatkę dla tej osoby",
+      "notesTitle": "Notatki",
+      "notesDescription": "Wszystkie notatki związane z tą osobą",
+      "newNote": "Nowa notatka",
+      "firstNoteButton": "Utwórz pierwszą notatkę",
+      "editDialogTitle": "Edytuj osobę",
+      "editDialogDescription": "Edytuj informacje o tej osobie",
+      "createNoteDialogTitle": "Utwórz nową notatkę",
+      "createNoteDialogDescription": "Utwórz nową notatkę dla {{name}}",
+      "editNoteDialogTitle": "Edytuj notatkę",
+      "editNoteDialogDescription": "Edytuj informacje o notatce",
+      "deleteConfirm": "Czy na pewno chcesz usunąć tę osobę? Osoba zostanie usunięta ze wszystkich projektów."
+    },
+    "list": {
+      "emptyTitle": "Brak kontaktów",
+      "emptyDescription": "Utwórz swoje pierwsze kontakty, aby powiązać je z projektami i notatkami."
+    },
+    "card": {
+      "descriptionLabel": "Opis:",
+      "expertiseLabel": "Ekspertyza:",
+      "viewButton": "Pokaż",
+      "editButton": "Edytuj",
+      "deleteButton": "Usuń"
+    },
+    "toast": {
+      "created": "Kontakt utworzony pomyślnie",
+      "updated": "Kontakt zaktualizowany pomyślnie",
+      "deleted": "Kontakt usunięty pomyślnie",
+      "createError": "Błąd podczas tworzenia kontaktu",
+      "updateError": "Błąd podczas aktualizacji kontaktu",
+      "deleteError": "Błąd podczas usuwania kontaktu"
+    }
+  },
+  "notes": {
+    "page": {
+      "title": "Notatki",
+      "subtitle": "Zapisuj swoje myśli i pomysły",
+      "loading": "Ładowanie notatek...",
+      "error": "Błąd podczas ładowania notatek",
+      "createButton": "Nowa notatka"
+    },
+    "form": {
+      "createTitle": "Utwórz nową notatkę",
+      "createDescription": "Utwórz nową notatkę z opcjonalnym przypisaniem do projektu",
+      "createDescriptionFor": "Utwórz nową notatkę dla {{name}}",
+      "editTitle": "Edytuj notatkę",
+      "editDescription": "Edytuj treść swojej notatki",
+      "contentLabel": "Notatka *",
+      "contentPlaceholder": "Napisz notatkę... (Ctrl+Enter aby zapisać)",
+      "projectLabel": "Projekt (opcjonalnie)",
+      "projectPlaceholder": "Brak przypisanego projektu",
+      "noProjectOption": "Brak projektu",
+      "personLabel": "Osoba (opcjonalnie)",
+      "personPlaceholder": "Brak przypisanej osoby",
+      "noPersonOption": "Brak osoby",
+      "submitCreate": "Utwórz notatkę",
+      "submitEdit": "Zapisz zmiany",
+      "submitting": "Zapisywanie...",
+      "saveShortcut": "Ctrl+Enter aby zapisać"
+    },
+    "list": {
+      "emptyTitle": "Brak notatek",
+      "emptyDescription": "Zapisz swoje pierwsze myśli i pomysły. Naciśnij Ctrl+Enter, aby szybko zapisać."
+    },
+    "card": {
+      "datetimeSeparator": "o",
+      "editButton": "Edytuj",
+      "deleteButton": "Usuń"
+    },
+    "dashboard": {
+      "recentTitle": "Ostatnie notatki",
+      "viewAll": "Pokaż wszystkie",
+      "loading": "Ładowanie notatek...",
+      "noNotes": "Brak notatek.",
+      "quickAccess": "Szybki dostęp",
+      "captureNotes": "Zapisuj swoje notatki"
+    },
+    "toast": {
+      "created": "Notatka utworzona pomyślnie",
+      "updated": "Notatka zaktualizowana pomyślnie",
+      "deleted": "Notatka usunięta pomyślnie",
+      "createError": "Błąd podczas tworzenia notatki",
+      "updateError": "Błąd podczas aktualizacji notatki",
+      "deleteError": "Błąd podczas usuwania notatki"
+    }
+  },
+  "validation": {
+    "email": {
+      "invalid": "Nieprawidłowy adres e-mail"
+    },
+    "password": {
+      "min": "Hasło musi mieć co najmniej 8 znaków",
+      "required": "Hasło jest wymagane",
+      "mismatch": "Hasła nie pasują do siebie"
+    },
+    "field": {
+      "required": "To pole jest wymagane",
+      "nameRequired": "Nazwa jest wymagana",
+      "contentRequired": "Treść jest wymagana",
+      "tooLong": "Wpis za długi",
+      "nameTooLong": "Nazwa za długa (maks. 100 znaków)",
+      "descriptionTooLong": "Opis za długi (maks. 500 znaków)",
+      "goalsTooLong": "Cele za długie (maks. 1000 znaków)",
+      "roleTooLong": "Rola za długa (maks. 100 znaków)",
+      "expertiseTooLong": "Ekspertyza za długa (maks. 500 znaków)",
+      "contactTooLong": "Informacje kontaktowe za długie (maks. 200 znaków)"
+    }
+  },
+  "theme": {
+    "toggle": "Przełącz motyw",
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowy"
+  },
+  "language": {
+    "toggle": "Zmień język"
+  }
+}

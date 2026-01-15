@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2, Calendar, Eye, CheckCircle, Pause, Trophy } from 'lucide-react';
 import type { Project } from '@/types/entities';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectCardProps {
   project: Project;
@@ -11,32 +12,34 @@ interface ProjectCardProps {
   onDelete?: (id: string) => void;
 }
 
-const statusConfig: Record<
-  Project['status'],
-  { label: string; color: string; icon: React.ReactNode; gradient: string }
-> = {
-  active: {
-    label: 'Aktiv',
-    color: 'bg-green-500 hover:bg-green-600',
-    icon: <CheckCircle className="h-3 w-3" />,
-    gradient: 'bg-gradient-to-br from-green-50/50 to-transparent dark:from-green-950/20',
-  },
-  paused: {
-    label: 'Pausiert',
-    color: 'bg-yellow-500 hover:bg-yellow-600',
-    icon: <Pause className="h-3 w-3" />,
-    gradient: 'bg-gradient-to-br from-yellow-50/50 to-transparent dark:from-yellow-950/20',
-  },
-  completed: {
-    label: 'Abgeschlossen',
-    color: 'bg-blue-500 hover:bg-blue-600',
-    icon: <Trophy className="h-3 w-3" />,
-    gradient: 'bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20',
-  },
-};
-
 export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const statusConfig: Record<
+    Project['status'],
+    { label: string; color: string; icon: React.ReactNode; gradient: string }
+  > = {
+    active: {
+      label: t('status.active'),
+      color: 'bg-green-500 hover:bg-green-600',
+      icon: <CheckCircle className="h-3 w-3" />,
+      gradient: 'bg-gradient-to-br from-green-50/50 to-transparent dark:from-green-950/20',
+    },
+    paused: {
+      label: t('status.paused'),
+      color: 'bg-yellow-500 hover:bg-yellow-600',
+      icon: <Pause className="h-3 w-3" />,
+      gradient: 'bg-gradient-to-br from-yellow-50/50 to-transparent dark:from-yellow-950/20',
+    },
+    completed: {
+      label: t('status.completed'),
+      color: 'bg-blue-500 hover:bg-blue-600',
+      icon: <Trophy className="h-3 w-3" />,
+      gradient: 'bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20',
+    },
+  };
+
   const status = statusConfig[project.status];
 
   const formattedDeadline = project.deadline
@@ -67,14 +70,14 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
         <div className="space-y-3">
           {project.goals && (
             <div>
-              <p className="text-sm font-medium text-muted-foreground mb-1">Ziele:</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">{t('projects.card.goalsLabel')}</p>
               <p className="text-sm">{project.goals}</p>
             </div>
           )}
           {formattedDeadline && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Calendar className="h-4 w-4" />
-              <span>Deadline: {formattedDeadline}</span>
+              <span>{t('projects.card.deadlineLabel')} {formattedDeadline}</span>
             </div>
           )}
           <div className="flex items-center gap-2 pt-2">
@@ -85,7 +88,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
               className="flex items-center gap-2"
             >
               <Eye className="h-4 w-4" />
-              Anzeigen
+              {t('projects.card.viewButton')}
             </Button>
             {onEdit && (
               <Button
@@ -95,7 +98,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
                 className="flex items-center gap-2"
               >
                 <Edit className="h-4 w-4" />
-                Bearbeiten
+                {t('projects.card.editButton')}
               </Button>
             )}
             {onDelete && (
@@ -106,7 +109,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
                 className="flex items-center gap-2 text-red-600 hover:text-red-700"
               >
                 <Trash2 className="h-4 w-4" />
-                Löschen
+                {t('projects.card.deleteButton')}
               </Button>
             )}
           </div>
