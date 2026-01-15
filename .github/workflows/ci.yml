@@ -31,6 +31,9 @@ jobs:
         continue-on-error: true
         run: npm run lint
 
+      - name: ✅ Run Unit Tests
+        run: npm test -- --run
+
       - name: 🔨 Build Project
         run: npm run build
 
