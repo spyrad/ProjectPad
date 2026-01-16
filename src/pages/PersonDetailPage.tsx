@@ -201,7 +201,7 @@ export default function PersonDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            {t('persons.detail.tabProjects')} ({personProjects.length})
+            {t('persons.detail.tabProjects', { count: personProjects.length })}
           </button>
           <button
             onClick={() => setActiveTab('notes')}
@@ -211,7 +211,7 @@ export default function PersonDetailPage() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            {t('persons.detail.tabNotes')} ({personNotes.length})
+            {t('persons.detail.tabNotes', { count: personNotes.length })}
           </button>
         </div>
       </div>
