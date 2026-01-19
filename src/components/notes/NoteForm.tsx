@@ -34,7 +34,7 @@ export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: Not
     defaultValues: {
       content: note?.content || '',
       project_id: note?.project_id || defaultProjectId || undefined,
-      person_id: note?.person_id || undefined,
+      person_id: undefined,
     },
   });
 
@@ -45,7 +45,6 @@ export function NoteForm({ note, onSubmit, isSubmitting, defaultProjectId }: Not
     if (note) {
       setValue('content', note.content);
       setValue('project_id', note.project_id || undefined);
-      setValue('person_id', note.person_id || undefined);
     }
   }, [note, setValue]);
 

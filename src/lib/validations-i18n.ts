@@ -3,6 +3,7 @@ import i18n from './i18n';
 
 // Helper function to get translation from validation section (now in main namespace)
 function t(key: string): string {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return i18n.t(`validation.${key}` as any);
 }
 
@@ -51,7 +52,7 @@ export function getPersonSchema() {
     role: z.string().max(100, t('field.roleTooLong')).optional(),
     description: z.string().max(500, t('field.descriptionTooLong')).optional(),
     expertise: z.string().max(500, t('field.expertiseTooLong')).optional(),
-    contact_info: z.string().max(200, t('field.contactTooLong')).optional(),
+    contact: z.string().max(200, t('field.contactTooLong')).optional(),
   });
 }
 

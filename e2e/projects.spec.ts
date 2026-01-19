@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
 // Helper to login (you'll need valid test credentials)
-async function login(page: any) {
+async function login(page: Page) {
   await page.goto('/login');
   // Use environment variables for test credentials
   const email = process.env.TEST_USER_EMAIL || 'test@example.com';

@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
 // Helper to login
-async function login(page: any) {
+async function login(page: Page) {
   await page.goto('/login');
   const email = process.env.TEST_USER_EMAIL || 'test@example.com';
   const password = process.env.TEST_USER_PASSWORD || 'testpassword123';

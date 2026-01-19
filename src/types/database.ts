@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      note_persons: {
+        Row: {
+          created_at: string
+          id: string
+          note_id: string
+          person_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note_id: string
+          person_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note_id?: string
+          person_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "note_persons_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "notes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "note_persons_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "persons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notes: {
         Row: {
           content: string
@@ -21,7 +57,6 @@ export type Database = {
           created_at: string
           deleted_at: string | null
           id: string
-          person_id: string | null
           project_id: string | null
           updated_at: string
           user_id: string
@@ -32,7 +67,6 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           id?: string
-          person_id?: string | null
           project_id?: string | null
           updated_at?: string
           user_id: string
@@ -43,19 +77,11 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           id?: string
-          person_id?: string | null
           project_id?: string | null
           updated_at?: string
           user_id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "notes_person_id_fkey"
-            columns: ["person_id"]
-            isOneToOne: false
-            referencedRelation: "persons"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "notes_project_id_fkey"
             columns: ["project_id"]
@@ -195,7 +221,6 @@ export type Database = {
           created_at: string
           deleted_at: string | null
           id: string
-          person_id: string | null
           project_id: string | null
           updated_at: string
           user_id: string

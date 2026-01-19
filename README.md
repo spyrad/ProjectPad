@@ -126,6 +126,45 @@ src/
 - `npm run test:e2e:headed` - Run E2E Tests (visible browser)
 - `npm run test:all` - Run all tests (Unit + E2E)
 
+### Demo Data Seeding
+- `npm run seed:demo` - Seed Polish demo project with sample data
+
+**Demo Project: "KPI Chatbot für Finanzabteilung"**
+
+Creates a complete Polish demo project with:
+- 1 Project: "Wdrożenie chatbota KPI dla działu finansowego"
+- 5 Persons: Finance team members (CFO, Reporting Manager, Data Analyst, Controlling Specialist, Backend Developer)
+- 10 Notes: Meeting notes from different project phases (chronologically distributed over 8 weeks)
+- All relationships between project, persons, and notes
+
+**Requirements:**
+1. Get your **Service Role Key** from Supabase Dashboard:
+   - Go to: https://supabase.com/dashboard/project/YOUR_PROJECT_ID/settings/api
+   - Copy the **Service Role Key** (secret, not the anon key!)
+2. Add to `.env.local`:
+   ```env
+   SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   ```
+   ⚠️ **IMPORTANT:** Never commit this key to Git or use it in frontend code!
+
+**Usage:**
+```bash
+# Option 1: Use authenticated user (login first in the app)
+npm run seed:demo
+
+# Option 2: Specify user ID explicitly
+npm run seed:demo -- --user-id=<YOUR_USER_ID>
+```
+
+**Verification:**
+1. Log in to the app
+2. Navigate to `/projects` → See the new Polish project
+3. Open project → Timeline with 10 notes
+4. Tab "Beteiligte" → 5 persons linked
+5. Navigate to `/persons` → 5 new contacts
+
+**Note:** Make sure to install dependencies first (`npm install`) to get the `tsx` package.
+
 ## Testing
 
 ### Unit Tests (Vitest)

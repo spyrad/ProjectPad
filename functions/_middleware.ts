@@ -1,5 +1,12 @@
 // Cloudflare Pages Function to set correct MIME types for assets
-export async function onRequest(context: any) {
+interface CloudflareContext {
+  request: Request;
+  next: () => Promise<Response>;
+  env?: Record<string, unknown>;
+  params?: Record<string, string>;
+}
+
+export async function onRequest(context: CloudflareContext) {
   const response = await context.next();
   const url = new URL(context.request.url);
 

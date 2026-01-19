@@ -72,18 +72,31 @@ export function useCreateNote() {
     mutationFn: async (note: NoteFormData): Promise<Note> => {
       if (!user) throw new Error('User not authenticated');
 
+      // Create the note without person_id
       const { data, error } = await supabase
         .from('notes')
         .insert({
           user_id: user.id,
           content: note.content,
           project_id: note.project_id || null,
-          person_id: note.person_id || null,
         })
         .select()
         .single();
 
       if (error) throw error;
+
+      // If person_id is provided, create note_persons entry
+      if (note.person_id && data.id) {
+        const { error: notePersonError } = await supabase
+          .from('note_persons')
+          .insert({
+            note_id: data.id,
+            person_id: note.person_id,
+          });
+
+        if (notePersonError) throw notePersonError;
+      }
+
       return data;
     },
     onSuccess: (data) => {
@@ -104,12 +117,12 @@ export function useUpdateNote() {
       id,
       ...note
     }: NoteFormData & { id: string }): Promise<Note> => {
+      // Update the note content and project
       const { data, error } = await supabase
         .from('notes')
         .update({
           content: note.content,
           project_id: note.project_id || null,
-          person_id: note.person_id || null,
           updated_at: new Date().toISOString(),
         })
         .eq('id', id)
@@ -117,6 +130,30 @@ export function useUpdateNote() {
         .single();
 
       if (error) throw error;
+
+      // Handle person association changes
+      if (note.person_id) {
+        // Check if note_persons entry already exists
+        const { data: existingLink } = await supabase
+          .from('note_persons')
+          .select('id')
+          .eq('note_id', id)
+          .eq('person_id', note.person_id)
+          .single();
+
+        // Only insert if it doesn't exist
+        if (!existingLink) {
+          const { error: notePersonError } = await supabase
+            .from('note_persons')
+            .insert({
+              note_id: id,
+              person_id: note.person_id,
+            });
+
+          if (notePersonError) throw notePersonError;
+        }
+      }
+
       return data;
     },
     onSuccess: (data) => {

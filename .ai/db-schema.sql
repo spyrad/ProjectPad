@@ -56,12 +56,20 @@ CREATE TABLE notes (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
     project_id UUID REFERENCES projects(id) ON DELETE SET NULL,
-    person_id UUID REFERENCES persons(id) ON DELETE SET NULL,
     content TEXT NOT NULL,
     content_search TSVECTOR GENERATED ALWAYS AS (to_tsvector('german', content)) STORED,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     deleted_at TIMESTAMPTZ
+);
+
+-- Note-Person Junction (N:M)
+CREATE TABLE note_persons (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    note_id UUID NOT NULL REFERENCES notes(id) ON DELETE CASCADE,
+    person_id UUID NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE(note_id, person_id)
 );
 
 -- -----------------------------------------------------------------------------
@@ -80,10 +88,13 @@ CREATE INDEX idx_persons_name ON persons(name) WHERE deleted_at IS NULL;
 CREATE INDEX idx_project_persons_project_id ON project_persons(project_id);
 CREATE INDEX idx_project_persons_person_id ON project_persons(person_id);
 
+-- Note-Persons
+CREATE INDEX idx_note_persons_note_id ON note_persons(note_id);
+CREATE INDEX idx_note_persons_person_id ON note_persons(person_id);
+
 -- Notes
 CREATE INDEX idx_notes_user_id ON notes(user_id) WHERE deleted_at IS NULL;
 CREATE INDEX idx_notes_project_timeline ON notes(project_id, created_at DESC) WHERE deleted_at IS NULL;
-CREATE INDEX idx_notes_person_id ON notes(person_id) WHERE deleted_at IS NULL;
 CREATE INDEX idx_notes_content_search ON notes USING GIN(content_search) WHERE deleted_at IS NULL;
 
 -- -----------------------------------------------------------------------------
@@ -142,6 +153,7 @@ ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE persons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE project_persons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE note_persons ENABLE ROW LEVEL SECURITY;
 
 -- Projects Policies
 CREATE POLICY "Users can view own projects"
@@ -225,6 +237,37 @@ CREATE POLICY "Users can delete own notes"
     ON notes FOR DELETE
     USING (auth.uid() = user_id);
 
+-- Note-Persons Policies (via note ownership)
+CREATE POLICY "Users can view own note_persons"
+    ON note_persons FOR SELECT
+    USING (
+        EXISTS (
+            SELECT 1 FROM notes
+            WHERE notes.id = note_persons.note_id
+            AND notes.user_id = auth.uid()
+        )
+    );
+
+CREATE POLICY "Users can create own note_persons"
+    ON note_persons FOR INSERT
+    WITH CHECK (
+        EXISTS (
+            SELECT 1 FROM notes
+            WHERE notes.id = note_persons.note_id
+            AND notes.user_id = auth.uid()
+        )
+    );
+
+CREATE POLICY "Users can delete own note_persons"
+    ON note_persons FOR DELETE
+    USING (
+        EXISTS (
+            SELECT 1 FROM notes
+            WHERE notes.id = note_persons.note_id
+            AND notes.user_id = auth.uid()
+        )
+    );
+
 -- -----------------------------------------------------------------------------
 -- HELPER FUNCTIONS
 -- -----------------------------------------------------------------------------
@@ -239,15 +282,15 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Soft delete a person (removes from project associations)
+-- Soft delete a person (removes from project and note associations)
 CREATE OR REPLACE FUNCTION soft_delete_person(person_uuid UUID)
 RETURNS VOID AS $$
 BEGIN
     -- Remove from project associations
     DELETE FROM project_persons WHERE person_id = person_uuid;
 
-    -- Clear person reference from notes (but keep notes)
-    UPDATE notes SET person_id = NULL WHERE person_id = person_uuid;
+    -- Remove from note associations (but keep notes)
+    DELETE FROM note_persons WHERE person_id = person_uuid;
 
     -- Soft delete the person
     UPDATE persons SET deleted_at = NOW() WHERE id = person_uuid AND deleted_at IS NULL;

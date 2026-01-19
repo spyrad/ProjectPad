@@ -8,7 +8,9 @@ describe('cn (className merger)', () => {
   });
 
   it('handles conditional classes', () => {
-    expect(cn('base', true && 'active', false && 'inactive')).toBe('base active');
+    const isActive = true;
+    const isInactive = false;
+    expect(cn('base', isActive && 'active', isInactive && 'inactive')).toBe('base active');
   });
 
   it('merges Tailwind classes correctly (last wins)', () => {
@@ -58,7 +60,6 @@ describe('groupNotesByDate', () => {
     id,
     user_id: 'user-1',
     project_id: null,
-    person_id: null,
     content: `Note ${id}`,
     created_at,
     updated_at: created_at,

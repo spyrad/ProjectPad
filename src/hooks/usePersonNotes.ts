@@ -13,8 +13,11 @@ export function usePersonNotes(personId: string | null | undefined) {
 
       const { data, error } = await supabase
         .from('notes')
-        .select('*')
-        .eq('person_id', personId)
+        .select(`
+          *,
+          note_persons!inner(person_id)
+        `)
+        .eq('note_persons.person_id', personId)
         .is('deleted_at', null)
         .order('created_at', { ascending: false });
 
